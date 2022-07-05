@@ -1,0 +1,11 @@
+version: '3'
+services:
+  postgresql-db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=p4SSW0rd
+      - POSTGRES_DB=demo
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
