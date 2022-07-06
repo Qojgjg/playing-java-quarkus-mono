@@ -1,4 +1,3 @@
-
 package org.acme.entity;
 
 import javax.persistence.Column;

@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.acme.boundary.dto.CartDto;
 import org.acme.entity.Cart;
 import org.acme.entity.CartRepository;
 import org.acme.entity.CustomerRepository;

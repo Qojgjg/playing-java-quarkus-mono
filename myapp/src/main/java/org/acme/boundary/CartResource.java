@@ -9,7 +9,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import org.acme.control.CartDto;
+import org.acme.boundary.dto.CartDto;
 import org.acme.control.CartService;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 

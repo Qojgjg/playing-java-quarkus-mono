@@ -9,7 +9,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import org.acme.control.CustomerDto;
+import org.acme.boundary.dto.CustomerDto;
 import org.acme.control.CustomerService;
 
 @Path("/customers")

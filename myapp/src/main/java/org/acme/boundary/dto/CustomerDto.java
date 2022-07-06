@@ -1,8 +1,9 @@
-package org.acme.control;
+package org.acme.boundary.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
