@@ -40,7 +40,7 @@ public class UserResource {
     public String getAccessToken(@QueryParam("username") String username,
                                 @QueryParam("password") String password)
                         throws IOException, InterruptedException {
-        return tokenService.getAccessToken(username, password,null);
+        return tokenService.getAccessToken(username, password);
     }
 
     @GET()

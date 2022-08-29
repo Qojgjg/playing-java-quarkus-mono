@@ -7,7 +7,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
-public class TestContainerResource implements QuarkusTestResourceLifecycleManager {
+public class TestContainerResource_no implements QuarkusTestResourceLifecycleManager {
     private static final PostgreSQLContainer<?> DATABASE = new PostgreSQLContainer<>("postgres:13");
 
     @Override

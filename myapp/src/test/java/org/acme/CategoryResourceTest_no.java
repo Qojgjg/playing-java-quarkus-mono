@@ -15,15 +15,16 @@ import java.util.HashMap;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
+import org.acme.utils.KeycloakRealmResource;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-
-
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-class CategoryResourceTest {
+@QuarkusTestResource(KeycloakRealmResource.class)
+class CategoryResourceTest_no {
 
     static String ADMIN_BEARER_TOKEN;
     static String USER_BEARER_TOKEN;
