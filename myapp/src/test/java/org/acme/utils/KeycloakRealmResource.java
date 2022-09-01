@@ -24,13 +24,7 @@ public class KeycloakRealmResource implements QuarkusTestResourceLifecycleManage
     @Override
     public Map<String, String> start() {
         KEYCLOAK.start();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-
+      
         String jwtIssuerUrl = String.format("http://%s:%s/auth/realms/quarkus-realm",
                 KEYCLOAK.getServiceHost("keycloak_1", 9080),
                 KEYCLOAK.getServicePort("keycloak_1", 9080));
@@ -54,7 +48,7 @@ public class KeycloakRealmResource implements QuarkusTestResourceLifecycleManage
                     "quarkushop",
                     "mysecret");
 
-            System.out.println("Token obtenido que voy a guardar:" + adminAccessToken);
+     //       System.out.println("Token obtenido que voy a guardar:" + adminAccessToken);
             System.setProperty("quarkus-admin-access-token", adminAccessToken);
             System.setProperty("quarkus-test-access-token", testAccessToken);
 
