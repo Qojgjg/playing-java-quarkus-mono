@@ -1,7 +1,8 @@
 package org.acme.utils;
 
-import org.acme.security.TokenService;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
+
+import org.acme.common.security.TokenService;
 import org.junit.ClassRule;
 import org.testcontainers.containers.DockerComposeContainer;
 import org.testcontainers.containers.wait.strategy.Wait;

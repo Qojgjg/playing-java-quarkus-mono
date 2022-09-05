@@ -30,22 +30,20 @@ import io.quarkus.test.junit.DisabledOnNativeImage;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 
-
 @QuarkusTest
 @QuarkusTestResource(KeycloakRealmResource.class)
 class CartResourceTest {
 
-
         static String ADMIN_BEARER_TOKEN;
         static String USER_BEARER_TOKEN;
-    
+
         private static final String INSERT_WRONG_CART_IN_DB = "insert into carts values (999, current_timestamp, current_timestamp,'NEW', 3)";
         private static final String DELETE_WRONG_CART_IN_DB = "delete from carts where id = 999";
-        
+
         @BeforeAll
         static void init() {
-            ADMIN_BEARER_TOKEN = System.getProperty("quarkus-admin-access-token");
-            USER_BEARER_TOKEN = System.getProperty("quarkus-test-access-token");
+                ADMIN_BEARER_TOKEN = System.getProperty("quarkus-admin-access-token");
+                USER_BEARER_TOKEN = System.getProperty("quarkus-test-access-token");
         }
 
         @Inject
@@ -53,24 +51,28 @@ class CartResourceTest {
 
         @Test
         void testFindAllWithAdminRole() {
+
+                /*
                 Properties props = System.getProperties();
 
-    //We want to loop through the entrys using the Keyset
-    Set<Object> propKeySet = props.keySet();
+                // We want to loop through the entrys using the Keyset
+                Set<Object> propKeySet = props.keySet();
 
-   for (Object singleKey : propKeySet) {
-   System.out.println(singleKey += props.getProperty((String) singleKey));    
-   }
-   
-             System.out.println("Token Admin:"+ADMIN_BEARER_TOKEN);   
-            given().when()
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + ADMIN_BEARER_TOKEN)
-                    .get("/carts")
-                    .then()
-                    .statusCode(OK.getStatusCode())
-                    .body("size()", greaterThan(0));
+                for (Object singleKey : propKeySet) {
+                        System.out.println(singleKey += props.getProperty((String) singleKey));
+                }
+
+                System.out.println("Token Admin:" + ADMIN_BEARER_TOKEN);
+                 */
+
+                 
+                given().when()
+                                .header(HttpHeaders.AUTHORIZATION, "Bearer " + ADMIN_BEARER_TOKEN)
+                                .get("/carts")
+                                .then()
+                                .statusCode(OK.getStatusCode())
+                                .body("size()", greaterThan(0));
         }
-    
 
         @Test
         void testGetActiveCartForCustomerWhenThereAreTwoCartsInDB() {

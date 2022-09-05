@@ -175,6 +175,18 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>pl.gdela</groupId>
+        <artifactId>socomo-maven</artifactId>
+        <version>2.3.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>analyze</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <profiles>

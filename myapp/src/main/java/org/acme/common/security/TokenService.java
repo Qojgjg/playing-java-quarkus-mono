@@ -1,4 +1,4 @@
-package org.acme.security;
+package org.acme.common.security;
 
 import java.io.IOException;
 import java.net.URI;
