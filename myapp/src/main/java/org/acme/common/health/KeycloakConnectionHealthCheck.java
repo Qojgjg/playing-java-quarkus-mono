@@ -53,9 +53,12 @@ public class KeycloakConnectionHealthCheck implements HealthCheck {
                 .build();
 
         HttpResponse<String> response = null;
-
+        log.info("Keycloak Request: "+request.toString());
         try {
             response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            log.info("Keycloak Response: "+response.toString());
+
         } catch (IOException e) {
             log.error("IOException", e);
         } catch (InterruptedException e) {

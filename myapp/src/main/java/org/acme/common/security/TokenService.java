@@ -75,7 +75,7 @@ public class TokenService {
     public String getAccessToken(String jwtIssuerUrl, String userName, String password, String clientId,
             String clientSecret) throws IOException, InterruptedException {
         String tokenizer = jwtIssuerUrl + "/protocol/openid-connect/token";
-       // log.error("Tonces: " + tokenizer);
+        log.error("Tonces: " + tokenizer);
         String requestBody = "username=" + userName + "&password=" + password + "&grant_type=password&client_id="
                 + clientId;
 
