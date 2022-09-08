@@ -14,28 +14,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-//import io.agroal.api.AgroalDataSource;
-
 @Path("/test")
 public class TestSQL_Lite {
 
- //   @Inject
-//    AgroalDataSource defaultDataSource;
     @Inject
     EntityManager em; 
 
-    @Path("/new")
-    @GET
-    @Transactional
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        Category cat = new Category();
-        cat.setName("cat1");
-        cat.setDescription("description");
-        em.persist(cat);
-        return "Hello from RESTEasy Reactive";
-    }
+    @Inject
+    PullingService counter;  
+
 
     @Path("/all")
     @GET
@@ -48,7 +35,8 @@ public class TestSQL_Lite {
         for (Category c:result){
             System.out.println(c);
         }
-        return "Hello from RESTEasy Reactive";
+
+        return "Hello from RESTEasy Reactive with counter in "+counter.get();
     }
     
     public static void main(String[] args) {
