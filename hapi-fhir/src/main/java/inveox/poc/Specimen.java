@@ -13,27 +13,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * A Category.
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Entity
-@Table(name = "categories")
-public class Category{
+@Table(name = "specimens")
+public class Specimen{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
+    private String accessionIdentifier;
 
     @NotNull
-    @Column(name = "description", nullable = false)
-    private String description;
+    private String container_id;
+
+    private String collection_method;
+
+    private String collection_bodySite;
+
+
+    @NotNull
+    private String type;
 
 }

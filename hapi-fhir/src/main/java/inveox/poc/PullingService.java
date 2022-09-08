@@ -28,10 +28,21 @@ public class PullingService{
     void increment() {
         counter.incrementAndGet(); 
         System.out.println(counter);
-        Category cat = new Category();
-        cat.setName("cat "+counter);
-        cat.setDescription("description");
-        em.persist(cat);
+
+        Specimen spec1 = new Specimen();
+        String accessionIdentifier = "";
+        String collection_bodySite ="";
+        String collection_method="";
+        String container_id="";
+        String type="";
+
+        spec1.setAccessionIdentifier(accessionIdentifier+"."+counter);
+        spec1.setCollection_bodySite(collection_bodySite);
+        spec1.setCollection_method(collection_method);
+        spec1.setContainer_id(container_id);
+        spec1.setType(type);
+
+        em.persist(spec1);
     }
 
 }
