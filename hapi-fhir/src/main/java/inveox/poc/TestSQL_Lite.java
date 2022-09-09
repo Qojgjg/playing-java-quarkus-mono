@@ -8,8 +8,11 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import inveox.poc.producer.SpecimenProducer;
 
 @Path("/test")
 public class TestSQL_Lite {
@@ -18,7 +21,7 @@ public class TestSQL_Lite {
     EntityManager em; 
 
     @Inject
-    PullingService counter;  
+    SpecimenProducer producer;
 
 
     @Path("/all")
@@ -34,6 +37,19 @@ public class TestSQL_Lite {
         }
 
         return "We have "+result.size() +" specimens stored";
+    }
+
+    @Path("/send/{id}")
+    @GET
+    @Transactional
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sendToKafka(@PathParam("id") Long id) {
+        
+        Specimen spec=em.find(Specimen.class, id);
+
+        producer.sendSpecimenToKafka(spec);
+
+        return "We sent specimen "+id;
     }
 
 
