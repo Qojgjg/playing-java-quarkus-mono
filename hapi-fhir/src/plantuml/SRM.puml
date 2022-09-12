@@ -6,20 +6,21 @@ participant SRM_PLC
 end box
 
 loop 10 sec
-    SRM_Ubuntu->FHIR_R4_Server ++: Pull DLO Orders for all Contaniers from a same patient
+    SRM_Ubuntu->FHIR_R4_Server ++: Pull DLO Orders for all new Contaniers
     return orders
     SRM_Ubuntu->SRM_Ubuntu: Store DLO Orders
+    SRM_Ubuntu->SRM_Ubuntu: Link Container by number case
 end
 loop for each container 
 SRM_PLC->SRM_PLC: Scan container ID
-SRM_PLC->SRM_Ubuntu: Read contaniner ID counting test
+SRM_PLC->SRM_Ubuntu: Read contaniner ID data
 SRM_PLC->SRM_PLC: Print data in GUI
 SRM_PLC->SRM_Ubuntu: Start Capture
-SRM_Ubuntu->SRM_Ubuntu: counting test
+SRM_Ubuntu->SRM_Ubuntu: Counting Test Performed
 SRM_Ubuntu->SRM_Ubuntu: Best Imaged Captured
-SRM_Ubuntu->SRM_PLC: Container ID is 'OK'  put in tray X
-SRM_PLC->SRM_PLC :Put Container ID in 'OK' exit 
-SRM_PLC->SRM_PLC: Next contanier
+SRM_Ubuntu->SRM_PLC: Container ID is 'OK'  put in case's tray X
+SRM_PLC->SRM_PLC :Put Container ID in 'OK' tray X 
+SRM_PLC->SRM_PLC: Load next Contanier
 end
 loop 30 sec
     SRM_Ubuntu->SRM_Ubuntu: Check pending events  

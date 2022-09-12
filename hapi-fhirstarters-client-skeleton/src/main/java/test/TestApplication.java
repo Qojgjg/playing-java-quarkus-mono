@@ -2,10 +2,12 @@ package test;
 
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.Specimen;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.api.SearchStyleEnum;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import ca.uhn.fhir.rest.param.DateRangeParam;
 
 public class TestApplication {
 
@@ -15,8 +17,26 @@ public class TestApplication {
    public static void main(String[] args) {
       // step1_read_a_resource();
 
-      search_multi_valued_parameters_with_post();
+//      search_multi_valued_parameters_with_post();
 
+      pullingSpecimen();
+
+   }
+
+   private static void pullingSpecimen() {
+            // Create a context
+            FhirContext ctx = FhirContext.forR4();
+
+            // Create a client
+            IGenericClient client = ctx.newRestfulGenericClient("https://hapi.fhir.org/baseR4");
+      
+            Bundle response = client.search()
+                  .forResource(Specimen.class)
+                  .lastUpdated(new DateRangeParam("2022-09-12", null))
+                  .returnBundle(Bundle.class)
+                  .execute();
+      
+            System.out.println(ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(response));
    }
 
    private static void search_multi_valued_parameters_with_post() {

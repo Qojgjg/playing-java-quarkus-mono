@@ -7,6 +7,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch UploadSpecimenBundle",
+            "request": "launch",
+            "mainClass": "inveox.poc.boundle.UploadSpecimenBundle",
+            "projectName": "playing-java-quarkus-mono"
+        },
+        {
+            "type": "java",
             "name": "Launch TestSQL_Lite",
             "request": "launch",
             "mainClass": "inveox.poc.TestSQL_Lite",
