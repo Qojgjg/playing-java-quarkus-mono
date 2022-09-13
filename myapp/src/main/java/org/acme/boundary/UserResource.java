@@ -24,7 +24,7 @@ import io.quarkus.security.Authenticated;
 
 @Path("/user")
 @Authenticated
-@Tag(name = " user", description = "All the user methods")
+@Tag(name = "user", description = "All the user methods")
 public class UserResource {
     @Inject
     JsonWebToken jwt;
