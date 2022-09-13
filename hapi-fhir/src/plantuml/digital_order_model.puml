@@ -1,0 +1,57 @@
+@startuml
+
+package com.inveox.db.entity {
+    entity        BaseEntity
+}
+
+package com.inveox.laborder.domain.model {
+
+
+ enum ContainerStatus {
+    NOT_SCANNED
+    SCANNED_NO_ISSUES
+    SCANNED_BROKEN
+    SCANNED_EMPTY
+ }
+
+entity DigitalLabOrder {
+    businessId
+    patientId
+    examination_date
+    examination_specialist_id
+    lastStatusChanged
+    scanningNote
+    caseDescription
+    }
+entity Container {
+    containerId
+}
+struct BodyPartSamples {
+    bodyPart
+    pinCoordinates
+    count
+}
+entity ContainerItem{
+    mainBodyPart
+}
+BaseEntity <|-- DigitalLabOrder
+BaseEntity <|-- Container
+DigitalLabOrder "1" *-- "many" Container
+Container "1" *-- "many" ContainerItem
+ContainerItem "1" *-- "many" BodyPartSamples
+
+DigitalLabOrder *-- "1" DigitalLabOrderStatus
+Container *-- "1" ContainerStatus
+
+enum DigitalLabOrderStatus {
+ DRAFT
+ READY_FOR_REVIEW
+ READY_TO_SEND
+ IN_DELIVERY
+ REJECTED
+ ACCEPTED
+}
+
+}
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+node SRM_Ubuntu{
+
+      [TwinCat]
+      [ImageProcessing]
+       [Controller]
+     [DICOMClient]
+    database SQLite    
+}
+
+node SRM_Windows_PLC {
+     [GUI IIS]
+     [PLC]
+}
+
+note right of Controller : Pull DLO data and Send events when is online
+
+cloud {
+    [FHIR_Server]
+    [DICOM_Server]
+    [ELK]
+}
+
+[GUI IIS]--[TwinCat]
+[GUI IIS]--[QR]
+[GUI IIS]--[Controller]
+[TwinCat]--[camera]
+[ImageProcessing] -- [Controller]
+[Controller]--[SQLite]
+[Controller]--[DICOMClient]
+[Controller]--[FHIR_Server]
+[Controller]--[DICOM_Server]
+[Controller]--[ELK]
+@enduml

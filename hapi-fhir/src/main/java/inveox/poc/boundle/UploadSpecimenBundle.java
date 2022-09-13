@@ -38,8 +38,8 @@ public class UploadSpecimenBundle {
         UploadSpecimenBundle.SpecimenPreLoad();
 
         // UploadSpecimenBundle.printSpecimen();
-      // uploadBundle1();
-uploadBundle2();
+       uploadBundle1();
+//uploadBundle2();
 
     }
 
@@ -89,7 +89,7 @@ uploadBundle2();
     private static void SpecimenPreLoad() {
         specimenR4 = new Specimen();
 
-        specimenR4.setId(new IdType(6999416));
+//        specimenR4.setId(new IdType(6999416));
 
         SpecimenContainerComponent container = new SpecimenContainerComponent();
         container.setSpecimenQuantity(new Quantity().setUnit("unit").setValue(5));
@@ -133,8 +133,10 @@ uploadBundle2();
         // object
         // comes from the results of a previous read or search, it will already
         // have one though)
-        // patient.setId("Patient/4068387");
-        IdType patid = new IdType(6999417);
+        //patient.setId("Patient/4068387");
+        //
+        
+        IdType patid = new IdType(4068387);
         patient.setId(patid);
 
     }

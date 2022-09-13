@@ -23,11 +23,11 @@ SRM_PLC->SRM_PLC :Put Container ID in 'OK' tray X
 SRM_PLC->SRM_PLC: Load next Contanier
 end
 loop 30 sec
-    SRM_Ubuntu->SRM_Ubuntu: Check pending events  
+    SRM_Ubuntu->SRM_Ubuntu: Check pending events to upload 
     SRM_Ubuntu->SRM_Ubuntu: DICOM Generated
-    SRM_Ubuntu->DICOM_Server: SEND DICOM to Cloud (POST)
+    SRM_Ubuntu->DICOM_Server: SEND DICOM Best Shoot to Cloud (POST)
     SRM_Ubuntu->SRM_Ubuntu: Sent Image
-    SRM_Ubuntu->Message_Queue: Mark Contanier as Completed
+    SRM_Ubuntu->FHIR_R4_Server: Mark Contanier as Completed
 end 
 loop 60 sec
     SRM_Ubuntu->ELK: Send Metrics to Cloud
