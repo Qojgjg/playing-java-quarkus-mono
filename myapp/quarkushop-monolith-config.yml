@@ -5,5 +5,5 @@ metadata:
 data:
   application.properties: |-
     quarkus.datasource.jdbc.url=jdbc:postgresql://postgres:5432/demo
-    mp.jwt.verify.publickey.location=http://keycloak-http.keycloak:80/auth/realms/quarkushop-realm/protocol/openid-connect/certs
-    mp.jwt.verify.issuer=http://keycloak-http.keycloak:80/auth/realms/quarkushop-realm
+    mp.jwt.verify.publickey.location=http://keycloak-http.keycloak/auth/realms/quarkushop-realm/protocol/openid-connect/certs
+    mp.jwt.verify.issuer=http://keycloak-http.keycloak/auth/realms/quarkushop-realm
