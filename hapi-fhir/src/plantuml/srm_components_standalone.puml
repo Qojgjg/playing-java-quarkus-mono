@@ -14,17 +14,23 @@ component Docker_Engine{
 } 
 }
 
+note right of ImageProcessing : Python code
+
 node SRM_Windows_PLC {
      [GUI IIS]
      [PLC]
+     [EtherCAT]
 }
 
+[EtherCAT]--[PLC]
+[GUI IIS]--[PLC]
 [GUI IIS]--[TwinCat]
 [GUI IIS]--[QR]
 [GUI IIS]--[Flask_Server]
-[TwinCat]--[camera]
+[TwinCat]--[ImageProcessing]
 [ImageProcessing] -- [PACS]
 [Flask_Server]--[ImageProcessing]
+[ImageProcessing] -- [camera]
 [PACS]--[MongoDB]
 [PACS]--[Postgres]
 

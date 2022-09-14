@@ -15,6 +15,7 @@
     <quarkus.platform.version>2.12.1.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+    <protobuf.version>3.21.1</protobuf.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -43,6 +44,11 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-grpc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java-util</artifactId>
+      <version>${protobuf.version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

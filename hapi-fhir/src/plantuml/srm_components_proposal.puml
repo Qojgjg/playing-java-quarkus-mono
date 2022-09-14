@@ -11,10 +11,13 @@ node SRM_Ubuntu{
 
 node SRM_Windows_PLC {
      [GUI IIS]
+          [EtherCAT]
      [PLC]
 }
 
 note right of Controller : Pull DLO data and Send events when is online
+
+note right of ImageProcessing : Python code
 
 cloud {
     [FHIR_Server]
@@ -22,11 +25,14 @@ cloud {
     [ELK]
 }
 
+[EtherCAT]--[PLC]
+[GUI IIS]--[PLC]
 [GUI IIS]--[TwinCat]
 [GUI IIS]--[QR]
 [GUI IIS]--[Controller]
-[TwinCat]--[camera]
+[TwinCat]--[ImageProcessing]
 [ImageProcessing] -- [Controller]
+[ImageProcessing] -- [camera]
 [Controller]--[SQLite]
 [Controller]--[DICOMClient]
 [Controller]--[FHIR_Server]
