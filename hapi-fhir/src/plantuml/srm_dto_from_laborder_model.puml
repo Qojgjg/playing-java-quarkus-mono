@@ -1,24 +1,16 @@
 @startuml
 
 
-package com.inveox.laborder.application.dto;{
-    class PageWithStatsDto
-    class DigitalLabOrderResponseDto
-    class DigitalLabOrderDto
-    class ContainersSummaryDto
+package com.inveox.srm.application.dto;{
 
-    class PageDto
+    class DigitalLabOrderDto
+
+
     class ContainerDto
     class ContainerItemDto
-    class SamplesDto
 
 }
 
-class ContainersSummaryDto{
-    Integer total
-	Integer scanned
-	List<String> mainBodyPartNames
-}
 
 class DigitalLabOrderDto {
     UUID id
@@ -26,13 +18,8 @@ class DigitalLabOrderDto {
 	Instant lastStatusChanged
 }
 
-DigitalLabOrderDto <|-- DigitalLabOrderResponseDto
 DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
-PageWithStatsDto "1" *-- "many" DigitalLabOrderResponseDto
-DigitalLabOrderResponseDto *-- "1" ContainersSummaryDto
-
-
-PageDto "1" *-- "many" ContainerDto
+DigitalLabOrderDto *-- "many" ContainerDto
 ContainerDto "1" *-- "many" ContainerItemDto
 
 class ContainerDto {
@@ -41,15 +28,12 @@ class ContainerDto {
 
 class ContainerItemDto {
     BodyPartDto mainBodyPart
+    Integer num_sample
 }
 
 ContainerDto *-- "1" ContainerStatus
 
-ContainerItemDto *-- "many" SamplesDto
 
-package com.inveox.db.entity {
-    entity        BaseEntity
-}
 
 package com.inveox.laborder.domain.model {
 

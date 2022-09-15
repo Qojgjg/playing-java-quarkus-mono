@@ -1,0 +1,157 @@
+@startuml
+
+
+package com.inveox.srm.application.dto;{
+
+    class DigitalLabOrderDto
+
+
+    class ContainerDto
+    class ContainerItemDto
+
+}
+
+
+class DigitalLabOrderDto {
+    UUID id
+	businessId	
+	Instant lastStatusChanged
+}
+
+DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
+DigitalLabOrderDto *-- "many" ContainerDto
+ContainerDto  *-- "many" ContainerItemDto
+
+class ContainerDto {
+    containerId
+}
+
+class ContainerItemDto {
+    BodyPartDto mainBodyPart
+    Integer num_sample
+}
+
+ContainerDto *-- "1" ContainerStatus
+
+
+
+package com.inveox.srm.domain.model {
+
+
+ enum ContainerStatus {
+    NOT_SCANNED
+    SCANNED_NO_ISSUES
+    SCANNED_BROKEN
+    SCANNED_EMPTY
+        IN_PROCESS
+    SCANNED_COUNT_DIFF
+ }
+
+  enum SRM_Event_Status {
+    DLO_CONTANIER_RESULT_SENT
+    DLO_CONTANIER_RESULT_SENT_PENDING
+    BEST_IMAGE_UPLOADED
+    BEST_IMAGE_PENDING
+    MULTIFRAMES_IMAGES_UPLOADED
+    MULTIFRAMES_IMAGES_PENDING
+    HARDWARE_ALERT
+    METRIC_STATS
+ }
+
+
+entity SRM {
+    businessId
+
+}
+
+entity Case{
+
+}
+
+entity Tray {
+    id
+    Light
+    Num_Contaniers
+    MAX_num_Contaniers
+}
+
+SRM *-- "1 fail" Tray
+SRM *-- "many" Tray
+
+Case "1" -- "1" Tray
+
+entity Case {
+    patientId
+    id
+}
+
+entity UPLoad_Policy {
+    active_slot_time
+    max_retries 
+    destination               
+}
+
+entity SRM_Event {
+    datetime sent
+    integer num_retry
+    dateme last_retry
+    contentReference
+}
+
+entity SRM_Process {
+    mode (Auto,Manual)
+    datetime imageAdquired
+    datetime contanierResultModifiedByUser
+    datetime contanierCountingResult
+    countingResult
+}
+
+SRM_Event *-- "1" SRM_Event_Status
+
+UPLoad_Policy <|--  UPLoad_Image_Policy
+UPLoad_Policy <|--  UPLoad_DLO_Policy
+UPLoad_Policy <|--  UPLoad_STATS
+UPLoad_Policy <|--  Backup_AllImages_Policy
+
+
+UPLoad_Policy *-- "many" SRM_Event
+
+entity DigitalLabOrder {
+    UUID id
+	businessId	
+	Instant lastStatusChanged
+    totalContaniers
+}
+
+entity Container {
+    containerId
+    mainBodyPart
+}
+
+Case "1" -- "many" Container
+
+entity ContainerItem{
+    mainBodyPart
+    Integer num_sample
+}
+
+Container  *-- "1" SRM_Process
+
+SRM_Process  *--  "many" SRM_Event
+
+DigitalLabOrder *-- "many" Container
+Container  *-- "many" ContainerItem
+
+DigitalLabOrder *-- "1" DigitalLabOrderStatus
+Container *-- "1" ContainerStatus
+
+enum DigitalLabOrderStatus {
+ IN_DELIVERY
+ REJECTED
+ ACCEPTED
+ LOADED_IN_PROCESS
+}
+
+}
+
+@enduml
