@@ -1,0 +1,37 @@
+@startuml
+
+node SRM_Ubuntu{
+      [Flask_Server]
+      [TwinCat]
+      [ImageProcessing]
+      
+component Docker_Engine{
+
+    database MongoDB
+    database Postgres
+    [PACS]
+
+} 
+}
+
+note right of ImageProcessing : Python code
+
+node SRM_Windows_PLC {
+     [GUI IIS]
+     [PLC]
+     [EtherCAT]
+}
+
+[EtherCAT]--[PLC]
+[GUI IIS]--[PLC]
+[GUI IIS]--[TwinCat]
+[GUI IIS]--[QR]
+[GUI IIS]--[Flask_Server]
+[TwinCat]--[ImageProcessing]
+[ImageProcessing] -- [PACS]
+[Flask_Server]--[ImageProcessing]
+[ImageProcessing] -- [camera]
+[PACS]--[MongoDB]
+[PACS]--[Postgres]
+
+@enduml

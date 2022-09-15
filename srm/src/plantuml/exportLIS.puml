@@ -1,0 +1,19 @@
+@startuml Test Diagram
+
+box "Kafka Cluster" #LightBlue
+participant CamelConnectorProducer
+participant CamelConnectorConsumerProducer
+end box
+
+CamelConnectorProducer->CamelConnectorProducer: Recieve FHIR bundle to export
+CamelConnectorProducer->CamelConnectorProducer: Store FHIR bundle
+CamelConnectorConsumerProducer->CamelConnectorConsumerProducer: Read & Convert FHIR to HL7
+CamelConnectorConsumerProducer->CamelConnectorConsumerProducer: Store HL7 OML message
+
+loop retry pending events
+    CamelConnectorConsumerProducer->LIS ++: Send HL7 OML
+    return ACK
+    CamelConnectorConsumerProducer->CamelConnectorConsumerProducer: Store ACK
+end
+
+@enduml
