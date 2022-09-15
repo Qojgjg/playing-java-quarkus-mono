@@ -1,6 +1,7 @@
 
-package inveox.poc;
+package inveox.srm;
 
+import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -8,6 +9,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import inveox.srm.domain.model.DigitalLabOrder;
+import inveox.srm.domain.model.enums.DigitalLabOrderStatus;
 import io.quarkus.scheduler.Scheduled;
 
 @ApplicationScoped 
@@ -29,20 +32,16 @@ public class PullingService{
         counter.incrementAndGet(); 
         System.out.println(counter);
 
-        Specimen spec1 = new Specimen();
+        DigitalLabOrder dlo = new DigitalLabOrder();
         String accessionIdentifier = "";
-        String collection_bodySite ="";
-        String collection_method="";
-        String container_id="";
-        String type="";
 
-        spec1.setAccessionIdentifier(accessionIdentifier+"."+counter);
-        spec1.setCollection_bodySite(collection_bodySite);
-        spec1.setCollection_method(collection_method);
-        spec1.setContainer_id(container_id);
-        spec1.setType(type);
+        dlo.setUuid(accessionIdentifier+"."+counter);
+        dlo.setLastStatusChanged(Instant.now());
+        dlo.setLastStatusChanged(Instant.now());
+        dlo.setBusinessId("businessId");
+        dlo.setStatus(DigitalLabOrderStatus.IN_DELIVERY);
 
-        em.persist(spec1);
+        em.persist(dlo);
     }
 
 }
