@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
 
 @Path("/test")
@@ -29,6 +30,7 @@ public class TestSQL_Lite {
         List<DigitalLabOrder> result = lQuery.getResultList();
         for (DigitalLabOrder c:result){
             System.out.println(c);
+            
         }
 
         return "We have "+result.size() +" dlo stored";

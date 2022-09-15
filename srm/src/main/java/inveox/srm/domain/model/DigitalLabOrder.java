@@ -38,7 +38,7 @@ public class DigitalLabOrder {
 
 
    // @OneToMany(mappedBy = "laborder", fetch = FetchType.LAZY, cascade =CascadeType.REMOVE)  
-   @OneToMany(fetch = FetchType.LAZY, cascade =CascadeType.REMOVE)
-    private Set<Contanier> contaniers;
+   @OneToMany(fetch = FetchType.LAZY, cascade =CascadeType.ALL)
+    private Set<Container> contaniers;
 
 }

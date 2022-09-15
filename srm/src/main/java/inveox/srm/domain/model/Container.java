@@ -16,15 +16,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Entity
-@Table(name = "contaniers")
-public class Contanier { 
+@Table(name = "containers")
+public class Container { 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    String containerId;
-    String mainBodyPart;
-    Integer num_samples;
+    private String containerId;
+    private String mainBodyPart;
+    private Integer num_samples;
     
 }
