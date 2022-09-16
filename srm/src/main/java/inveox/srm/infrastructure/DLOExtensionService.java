@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import inveox.srm.infrastructure.dto.DigitalLabOrderDto;
 import inveox.srm.infrastructure.dto.Example;
 
 @Path("/thing")
@@ -14,6 +15,10 @@ import inveox.srm.infrastructure.dto.Example;
 public interface DLOExtensionService {
 
     @GET
-    Set<Example> getAll();
+    Set<DigitalLabOrderDto> getAll();
+
+    @Path("/examples")
+    @GET
+    Set<Example> getAllExamples();
     
 }

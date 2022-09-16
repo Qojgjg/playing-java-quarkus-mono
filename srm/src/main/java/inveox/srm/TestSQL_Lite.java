@@ -16,6 +16,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import inveox.srm.domain.model.DigitalLabOrder;
 import inveox.srm.infrastructure.DLOExtensionService;
+import inveox.srm.infrastructure.dto.DigitalLabOrderDto;
 import inveox.srm.infrastructure.dto.Example;
 
 @Path("/test")
@@ -49,9 +50,21 @@ public class TestSQL_Lite {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAllFromMockService(){
-        System.out.println("Tonces");
-        Set<Example> result=    dloService.getAll();
+        Set<DigitalLabOrderDto> result=    dloService.getAll();
+        for (DigitalLabOrderDto c:result){
+            System.out.println(c);
+            
+        }
         return "We have "+result.size() +" dlo pulled";
+    }
+
+
+    @Path("/mock/examples")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getAllFromMockExamplesService(){
+        Set<Example> result=    dloService.getAllExamples();
+        return "We have "+result.size() +" examples pulled";
     }
 
 }
