@@ -15,9 +15,9 @@ import javax.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import inveox.srm.domain.model.DigitalLabOrder;
-import inveox.srm.infrastructure.DLOExtensionService;
-import inveox.srm.infrastructure.dto.DigitalLabOrderDto;
-import inveox.srm.infrastructure.dto.Example;
+import inveox.srm.infrastructure.inbound.dlo.DLOExtensionService;
+import inveox.srm.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
+import inveox.srm.infrastructure.inbound.dlo.dto.Example;
 
 @Path("/test")
 public class TestSQL_Lite {

@@ -15,12 +15,16 @@ loop for each container
 SRM_PLC->SRM_PLC: Scan container ID
 SRM_PLC->SRM_Ubuntu: Read contaniner ID data
 SRM_PLC->SRM_PLC: Print data in GUI
-SRM_PLC->SRM_Ubuntu: Start Capture
+
+SRM_PLC->SRM_Ubuntu: Start Capture (fps,mode)
 SRM_Ubuntu->SRM_Ubuntu: Counting Test Performed
+SRM_Ubuntu->SRM_Ubuntu: Counting and Size is correct
 SRM_Ubuntu->SRM_Ubuntu: Best Imaged Captured
+SRM_Ubuntu->SRM_Ubuntu: Tray X Selected
 SRM_Ubuntu->SRM_PLC: Container ID is 'OK'  put in case's tray X
 SRM_PLC->SRM_PLC :Put Container ID in 'OK' tray X 
 SRM_PLC->SRM_PLC: Load next Contanier
+
 end
 loop 30 sec
     SRM_Ubuntu->SRM_Ubuntu: Check pending events to upload 

@@ -1,4 +1,4 @@
-package inveox.srm.infrastructure.dto;
+package inveox.srm.infrastructure.inbound.dlo.dto;
 
 import java.util.List;
 
