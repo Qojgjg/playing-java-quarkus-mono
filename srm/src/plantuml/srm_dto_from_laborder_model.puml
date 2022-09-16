@@ -1,14 +1,9 @@
 @startuml
 
 
-package com.inveox.srm.application.dto;{
-
+package com.inveox.srm.application.dto{
     class DigitalLabOrderDto
-
-
     class ContainerDto
-    class ContainerItemDto
-
 }
 
 
@@ -20,15 +15,12 @@ class DigitalLabOrderDto {
 
 DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
 DigitalLabOrderDto *-- "many" ContainerDto
-ContainerDto "1" *-- "many" ContainerItemDto
+
 
 class ContainerDto {
     containerId
-}
-
-class ContainerItemDto {
-    BodyPartDto mainBodyPart
-    Integer num_sample
+    String mainBodyPart
+    Integer samples
 }
 
 ContainerDto *-- "1" ContainerStatus
@@ -63,9 +55,7 @@ struct BodyPartSamples {
     pinCoordinates
     count
 }
-entity ContainerItem{
-    mainBodyPart
-}
+
 BaseEntity <|-- DigitalLabOrder
 BaseEntity <|-- Container
 DigitalLabOrder "1" *-- "many" Container

@@ -7,7 +7,6 @@ package com.inveox.srm.application.dto;{
 
 
     class ContainerDto
-    class ContainerItemDto
 
 }
 
@@ -20,15 +19,11 @@ class DigitalLabOrderDto {
 
 DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
 DigitalLabOrderDto *-- "many" ContainerDto
-ContainerDto  *-- "many" ContainerItemDto
 
 class ContainerDto {
     containerId
-}
-
-class ContainerItemDto {
-    BodyPartDto mainBodyPart
-
+    String mainBodyPart
+    Integer samples
 }
 
 ContainerDto *-- "1" ContainerStatus

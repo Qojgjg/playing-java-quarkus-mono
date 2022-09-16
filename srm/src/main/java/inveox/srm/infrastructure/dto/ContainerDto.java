@@ -20,6 +20,8 @@ public class ContainerDto {
 
     private ContainerStatus status;
 
-    private List<ContainerItemDto> containerItems;
+    String mainBodyPart;
+
+    Integer samples;
 
 }

@@ -6,18 +6,14 @@
     "containers": [{
             "containerId": "cont1",
             "status": "NOT_SCANNED",
-            "containerItems": [{
-                "mainBodyPart": "Brain",
-                "samples": 4
-            }]
+            "mainBodyPart": "Brain",
+            "samples": 4
         },
         {
             "containerId": "cont2",
             "status": "NOT_SCANNED",
-            "containerItems": [{
-                "mainBodyPart": "Lunge",
-                "samples": 5
-            }]
+            "mainBodyPart": "Lunge",
+            "samples": 5
         }
     ]
 }]
