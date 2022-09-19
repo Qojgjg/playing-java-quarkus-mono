@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 
 import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
+import inveox.srm.domain.model.enums.ContainerStatus;
 import inveox.srm.domain.model.enums.DigitalLabOrderStatus;
 import io.quarkus.scheduler.Scheduled;
 
@@ -49,12 +50,14 @@ public class PullingService{
         cont1.setContainerId("containerId"+"."+counter);
         cont1.setNum_samples(counter.get());
         cont1.setMainBodyPart("mainBodyPart");
+        cont1.setStatus(ContainerStatus.IN_PROCESS);
 
         Container cont2=new Container();
 
         cont2.setContainerId("containerId"+"."+counter+1);
         cont2.setNum_samples(counter.get());
-        cont1.setMainBodyPart("mainBodyPart2");
+        cont2.setMainBodyPart("mainBodyPart2");
+        cont2.setStatus(ContainerStatus.IN_PROCESS);
         
         Set<Container> conts=new HashSet<Container>();
 

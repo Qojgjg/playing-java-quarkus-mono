@@ -49,6 +49,7 @@ public class ContanierQueryService {
                             contDto.setMainBodyPart(conta.getMainBodyPart());
                         }
                         contDto.setSamples(conta.getNum_samples());
+                        contDto.setStatus(conta.getStatus());
                         containersData.add(contDto);
                     }
                 }
