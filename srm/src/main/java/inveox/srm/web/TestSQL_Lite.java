@@ -1,4 +1,4 @@
-package inveox.srm;
+package inveox.srm.web;
 
 import java.util.List;
 import java.util.Set;

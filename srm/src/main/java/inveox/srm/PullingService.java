@@ -36,7 +36,7 @@ public class PullingService{
         System.out.println(counter);
 
         DigitalLabOrder dlo = new DigitalLabOrder();
-        String accessionIdentifier = "";
+        String accessionIdentifier = "1.2.23.1";
 
         dlo.setUuid(accessionIdentifier+"."+counter);
         dlo.setLastStatusChanged(Instant.now());
