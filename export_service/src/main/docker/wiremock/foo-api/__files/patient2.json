@@ -1,4 +1,13 @@
 {
-    "id": "4444",
-    "bussinessId": "22222"
+    "id": "4068387",
+    "businessId": 12324,
+    "givenNames": "Sebastian Daniel",
+    "familyName": "Scotti",
+    "dateOfBirth": "1980-12-20",
+    "gender": "MALE",
+    "insurances": [{
+        "id": "insurance_uid1"
+    }, {
+        "id": "insurance_uid2"
+    }]
 }

@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "url": "/patient/pat2"
+        "url": "/patient/4068387"
     },
     "response": {
         "status": 200,
