@@ -3,11 +3,13 @@
     "businessId": 12324,
     "givenNames": "Sebastian Daniel",
     "familyName": "Scotti",
-    "dateOfBirth": "1980-12-20",
+    "dateOfBirth": "1980-12-30",
     "gender": "MALE",
     "insurances": [{
-        "id": "insurance_uid1"
+        "id": "insurance_uid1",
+        "type": "PUBLIC"
     }, {
-        "id": "insurance_uid2"
+        "id": "insurance_uid2",
+        "type": "PRIVATE"
     }]
 }

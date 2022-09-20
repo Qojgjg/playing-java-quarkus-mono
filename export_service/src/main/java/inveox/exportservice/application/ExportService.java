@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +23,7 @@ import ca.uhn.hl7v2.model.v25.segment.PID;
 import ca.uhn.hl7v2.parser.Parser;
 import inveox.exportservice.infrastructure.inbound.patient.PatientExtensionService;
 import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
+import inveox.exportservice.infrastructure.inbound.patient.dto.enums.GenderType;
 
 @ApplicationScoped
 public class ExportService {
@@ -31,6 +33,13 @@ public class ExportService {
     PatientExtensionService patientMock;
     
 	private DefaultHapiContext ctx;
+
+	private SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd");
+
+	private SimpleDateFormat inputdf= new SimpleDateFormat("yyyy-MM-dd");
+
+	private SimpleDateFormat dfwithTime= new SimpleDateFormat("yyyyMMddHHmmss");
+
 
 	@PostConstruct
 	public void open_connection_with_RIS_ADT_Interface() {		
@@ -58,12 +67,11 @@ public class ExportService {
 
 		ORM_O01 orm=new ORM_O01();
 		String orderControl="NW";
+
 		try {
 			orm.initQuickstart("ORM","O01", "P");
 
-			SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat dfwithTime= new SimpleDateFormat("yyyyMMddHHmmss");
-
+			
 			MSH segMSH=(MSH) orm.getMSH();
 			segMSH.getReceivingApplication().getNamespaceID().setValue("Nexus");
 			segMSH.getSendingApplication().getNamespaceID().setValue("DLO");
@@ -77,12 +85,31 @@ public class ExportService {
 
             segPID.getPatientIdentifierList(0).getIDNumber().setValue(patientDto.getId());
 
+			if (patientDto.getGender().equals(GenderType.MALE)){
+				segPID.getAdministrativeSex().setValue("M");
+			}else if (patientDto.getGender().equals(GenderType.FEMALE)){
+				segPID.getAdministrativeSex().setValue("F");
+			}else{
+				segPID.getAdministrativeSex().setValue("O");
+			}
+
+			String hl7StringDT;
+
+			try {
+				hl7StringDT = df.format(inputdf.parse(patientDto.getDateOfBirth()));
+				segPID.getDateTimeOfBirth().getTime().setValue(hl7StringDT);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
 			/*
             segPID.getAlternatePatientIDPID(0).getID().setValue(""+datosOrdenVO.getPaciente().getHc());
 			
 			segPID.getPatientIdentifierList(0).getAssigningAuthority().getHd1_NamespaceID().setValue(datosOrdenVO.getPaciente().getId().getTipoId());
 			segPID.getDateTimeOfBirth().getTimeOfAnEvent().setValue(df.format(datosOrdenVO.getPaciente().getFechaNacimiento()));
-			segPID.getSex().setValue(datosOrdenVO.getPaciente().getSexo().getValor());
+			
 			if (datosOrdenVO.getEmail()!=null) {
 				segPID.getPhoneNumberBusiness(0).getAnyText().setValue(datosOrdenVO.getEmail());
 			}
