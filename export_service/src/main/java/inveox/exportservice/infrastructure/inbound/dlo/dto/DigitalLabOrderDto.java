@@ -1,9 +1,9 @@
-package inveox.srm.infrastructure.inbound.dlo.dto;
+package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
 import java.time.Instant;
 import java.util.List;
 
-import inveox.srm.domain.model.enums.DigitalLabOrderStatus;
+import inveox.exportservice.domain.model.enums.DigitalLabOrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

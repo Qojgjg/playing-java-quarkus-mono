@@ -1,4 +1,4 @@
-package inveox.srm.domain.model.enums;
+package inveox.exportservice.domain.model.enums;
 
 public enum ContainerStatus {
     NOT_SCANNED,
