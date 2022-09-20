@@ -1,13 +1,13 @@
 {
     "request": {
         "method": "GET",
-        "url": "/foo-api/thing"
+        "url": "/patient/pat2"
     },
     "response": {
         "status": 200,
         "headers": {
             "Content-Type": "application/json"
         },
-        "bodyFileName": "dlos.json"
+        "bodyFileName": "patient2.json"
     }
 }

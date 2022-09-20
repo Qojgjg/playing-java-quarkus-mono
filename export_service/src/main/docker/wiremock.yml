@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
 
-  foo-api:
+  patient-service:
     image: wiremock/wiremock:2.32.0
     ports:
       - "9000:8080"

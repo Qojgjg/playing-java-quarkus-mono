@@ -1,13 +1,13 @@
 {
     "request": {
         "method": "GET",
-        "url": "/foo-api/examples"
+        "url": "/patient/pat1"
     },
     "response": {
         "status": 200,
         "headers": {
             "Content-Type": "application/json"
         },
-        "bodyFileName": "entries.json"
+        "bodyFileName": "patient1.json"
     }
 }
