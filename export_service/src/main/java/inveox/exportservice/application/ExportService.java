@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 
 import javax.annotation.PostConstruct;
@@ -34,11 +33,8 @@ public class ExportService {
 	private DefaultHapiContext ctx;
 
 	@PostConstruct
-	public void open_connection_with_RIS_ADT_Interface() {
-		
+	public void open_connection_with_RIS_ADT_Interface() {		
 				initialize();
-		
-
 	}
 
 
@@ -79,9 +75,11 @@ public class ExportService {
             String givenNames=patientDto.getGivenNames();
 			segPID.getPatientName(0).getGivenName().setValue(givenNames);
 
-            /* 
+            segPID.getPatientIdentifierList(0).getIDNumber().setValue(patientDto.getId());
+
+			/*
             segPID.getAlternatePatientIDPID(0).getID().setValue(""+datosOrdenVO.getPaciente().getHc());
-			segPID.getPatientIdentifierList(0).getID().setValue(datosOrdenVO.getPaciente().getId().getId());
+			
 			segPID.getPatientIdentifierList(0).getAssigningAuthority().getHd1_NamespaceID().setValue(datosOrdenVO.getPaciente().getId().getTipoId());
 			segPID.getDateTimeOfBirth().getTimeOfAnEvent().setValue(df.format(datosOrdenVO.getPaciente().getFechaNacimiento()));
 			segPID.getSex().setValue(datosOrdenVO.getPaciente().getSexo().getValor());

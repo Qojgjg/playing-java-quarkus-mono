@@ -5,10 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
 import inveox.exportservice.application.ExportService;
-import inveox.exportservice.infrastructure.inbound.patient.PatientExtensionService;
 import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
 
 
@@ -35,7 +32,7 @@ public class TestExport {
 
         exportService.mapDLOtoORM_01(pat_id);
 
-        return "Patient "+ pat_id + "mapped";
+        return "Patient "+ pat_id + " was mapped check export Folder";
     }
  
 
