@@ -1,0 +1,105 @@
+@startuml
+
+
+package com.inveox.laborder.application.dto;{
+    class PageWithStatsDto
+    class DigitalLabOrderResponseDto
+    class DigitalLabOrderDto
+    class ContainersSummaryDto
+
+    class PageDto
+    class ContainerDto
+    class ContainerItemDto
+    class SamplesDto
+
+}
+
+class ContainersSummaryDto{
+    Integer total
+	Integer scanned
+	List<String> mainBodyPartNames
+}
+
+class DigitalLabOrderDto {
+    UUID id
+	businessId	
+	Instant lastStatusChanged
+}
+
+DigitalLabOrderDto <|-- DigitalLabOrderResponseDto
+DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
+PageWithStatsDto "1" *-- "many" DigitalLabOrderResponseDto
+DigitalLabOrderResponseDto *-- "1" ContainersSummaryDto
+
+
+PageDto "1" *-- "many" ContainerDto
+ContainerDto "1" *-- "many" ContainerItemDto
+
+class ContainerDto {
+    containerId
+}
+
+class ContainerItemDto {
+    BodyPartDto mainBodyPart
+}
+
+ContainerDto *-- "1" ContainerStatus
+
+ContainerItemDto *-- "many" SamplesDto
+
+package com.inveox.db.entity {
+    entity        BaseEntity
+}
+
+package com.inveox.laborder.domain.model {
+
+
+ enum ContainerStatus {
+    NOT_SCANNED
+    SCANNED_NO_ISSUES
+    SCANNED_BROKEN
+    SCANNED_EMPTY
+ }
+
+entity DigitalLabOrder {
+    UUID id
+    businessId
+    patientId
+    examination_date
+    examination_specialist_id
+    lastStatusChanged
+    scanningNote
+    caseDescription
+    }
+entity Container {
+    containerId
+}
+struct BodyPartSamples {
+    bodyPart
+    pinCoordinates
+    count
+}
+entity ContainerItem{
+    mainBodyPart
+}
+BaseEntity <|-- DigitalLabOrder
+BaseEntity <|-- Container
+DigitalLabOrder "1" *-- "many" Container
+Container "1" *-- "many" ContainerItem
+ContainerItem "1" *-- "many" BodyPartSamples
+
+DigitalLabOrder *-- "1" DigitalLabOrderStatus
+Container *-- "1" ContainerStatus
+
+enum DigitalLabOrderStatus {
+ DRAFT
+ READY_FOR_REVIEW
+ READY_TO_SEND
+ IN_DELIVERY
+ REJECTED
+ ACCEPTED
+}
+
+}
+
+@enduml

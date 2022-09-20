@@ -1,0 +1,9 @@
+@startuml
+
+Client->ExportComponent: export DLO_id 
+ExportComponent->LabOrderService: Read DLO data
+ExportComponent->PatientService: Read Patient data
+ExportComponent->ExportComponent: Convert DLO to HL7 OML
+ExportComponent->ExportComponent: Store HL7 OML in Filesystem client folder (sFTP)
+
+@enduml

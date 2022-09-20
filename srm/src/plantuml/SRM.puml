@@ -1,4 +1,4 @@
-@startuml Test Diagram
+@startuml
 
 box "SRM_Machine" #LightBlue
 participant SRM_Ubuntu
