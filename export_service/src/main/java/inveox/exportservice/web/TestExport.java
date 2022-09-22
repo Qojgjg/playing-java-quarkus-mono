@@ -6,16 +6,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
 import inveox.exportservice.application.ExportService;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
 import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
 
 
-@Path("/export/patient")
+@Path("/export/")
 public class TestExport {
 
     @Inject
     ExportService exportService;
 
-    @Path("/mock/{pat_id}")
+    @Path("dlo/mock/{dlo_id}")
+    @GET
+    public DigitalLabOrderDto getDLO(@PathParam("dlo_id") String dlo_id) {
+
+        DigitalLabOrderDto dlo = exportService.getDigitalLabOrder(dlo_id);
+
+        System.out.println(dlo);
+
+        return dlo;
+    }
+
+    @Path("patient/mock/{pat_id}")
     @GET
     public PatientDto getPatient(@PathParam("pat_id") String pat_id) {
 
@@ -26,13 +38,13 @@ public class TestExport {
         return patientDto;
     }
 
-    @Path("/map/{pat_id}")
+    @Path("/map/{dlo_id}")
     @GET
-    public String MapPatient(@PathParam("pat_id") String pat_id) {
+    public String Map(@PathParam("dlo_id") String dlo_id) {
 
-        exportService.mapDLOtoORM_01(pat_id);
+        exportService.mapDLOtoORM_01(dlo_id);
 
-        return "Patient "+ pat_id + " was mapped check export Folder";
+        return "Data lab order "+ dlo_id + " was mapped check export Folder";
     }
  
 

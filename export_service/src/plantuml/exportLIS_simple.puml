@@ -14,18 +14,17 @@ activate icp
 activate int
 int -> lab: getLabOrdersWithStateReady
 activate lab
-lab -> lab: get all lab orders with state <b>SAMPLES_REGISTERED</b>
+lab -> lab: get all lab orders with state <b>READY_TO_EXPORT</b>
 lab --> int: lab orders
 deactivate lab
-deactivate icp
-
-end
-
+int --> icp: lab orders
+deactivate int
 loop for each lab order
-
-
+icp -> int: getLabOrderAsORMById
+activate int
 int -> lab: getLabOrderById
 activate lab
+
 lab --> int: lab order (Dto)
 deactivate lab
 int -> pat: getPatientById
@@ -34,23 +33,23 @@ pat --> int: patientAndCoverages (Dto)
 deactivate pat
 
 int -> int: Convert DLO to HL7 ORM (patient, coverages, labOrder)
-int -> int: store HL7 ORM \nmessage to SFTP server Folder by Client
 
+
+int --> icp: HL7 ORM message
+deactivate int
+icp -> icp: store HL7 ORM \nmessage to SFTP server
+icp -> int: confirmLabOrderExported
+activate int
 int -> lab: confirmLabOrderExported
 activate lab
 lab -> lab: set status <b>ACCEPTED</b>
 lab --> int
 deactivate lab
-
+int --> icp
 deactivate int
-
-end
-
-activate icp
-icp->icp: loadFiles_sFTP
 deactivate icp
 
-
-
+end
+end
 
 @enduml

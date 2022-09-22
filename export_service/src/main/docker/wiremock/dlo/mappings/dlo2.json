@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/laborder/2.4068387"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "dlo2.json"
+    }
+}

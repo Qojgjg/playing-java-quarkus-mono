@@ -11,6 +11,7 @@ import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
 import inveox.srm.domain.model.SRM_Event;
 import inveox.srm.domain.model.SRM_Process;
+import inveox.srm.domain.model.enums.Actor;
 import inveox.srm.domain.model.enums.ContainerStatus;
 import inveox.srm.domain.model.enums.SRM_Event_Status;
 import inveox.srm.repository.DigitalLabOrderRepository;
@@ -78,6 +79,7 @@ public class ContanierProcessorService {
         events.add(eventMultiframe);
 
         process.setEvents(events);
+        process.setCountedBy(Actor.SRM);
 
         dloRepo.save(dlo);
         processRepo.save(process);

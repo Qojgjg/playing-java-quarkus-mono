@@ -21,6 +21,8 @@ import ca.uhn.hl7v2.model.v25.message.ORM_O01;
 import ca.uhn.hl7v2.model.v25.segment.MSH;
 import ca.uhn.hl7v2.model.v25.segment.PID;
 import ca.uhn.hl7v2.parser.Parser;
+import inveox.exportservice.infrastructure.inbound.dlo.DLOExtensionService;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
 import inveox.exportservice.infrastructure.inbound.patient.PatientExtensionService;
 import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
 import inveox.exportservice.infrastructure.inbound.patient.dto.enums.GenderType;
@@ -31,6 +33,10 @@ public class ExportService {
     @Inject
     @RestClient
     PatientExtensionService patientMock;
+
+	@Inject
+    @RestClient
+    DLOExtensionService dloMock;
     
 	private DefaultHapiContext ctx;
 
@@ -53,6 +59,12 @@ public class ExportService {
 
         return patientDto;
     }
+
+	public DigitalLabOrderDto getDigitalLabOrder(String dlo_id) {
+
+		DigitalLabOrderDto dlo=dloMock.getDigitalLabOrderDto(dlo_id);
+		return dlo;
+	}
 	
 	public void initialize() {
 		
@@ -215,6 +227,9 @@ public class ExportService {
 		}
 		return path;
 	}
+
+
+	
 
    
 }

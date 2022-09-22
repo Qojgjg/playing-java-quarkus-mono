@@ -9,4 +9,12 @@ services:
     command:
       - "--global-response-templating"
     volumes:
-      - ./wiremock/foo-api:/home/wiremock
+      - ./wiremock/patient:/home/wiremock
+  dlo-service:
+    image: wiremock/wiremock:2.32.0
+    ports:
+      - "9001:8080"
+    command:
+      - "--global-response-templating"
+    volumes:
+      - ./wiremock/dlo:/home/wiremock

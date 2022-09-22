@@ -1,0 +1,19 @@
+{
+    "id": "2.4068387",
+    "bussinessId": "4068387",
+    "lasStatusChanged": "2022-08-14T12:17:47.720Z",
+    "status": "IN_DELIVERY",
+    "containers": [{
+            "containerId": "cont1",
+            "status": "NOT_SCANNED",
+            "mainBodyPart": "Brain",
+            "samples": 4
+        },
+        {
+            "containerId": "cont2",
+            "status": "NOT_SCANNED",
+            "mainBodyPart": "Lunge",
+            "samples": 5
+        }
+    ]
+}
