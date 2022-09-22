@@ -16,12 +16,19 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HL7Exception;
 import ca.uhn.hl7v2.model.Message;
+import ca.uhn.hl7v2.model.Varies;
+import ca.uhn.hl7v2.model.v25.datatype.NM;
 import ca.uhn.hl7v2.model.v25.datatype.ST;
 import ca.uhn.hl7v2.model.v25.message.ORM_O01;
 import ca.uhn.hl7v2.model.v25.segment.MSH;
+import ca.uhn.hl7v2.model.v25.segment.OBR;
+import ca.uhn.hl7v2.model.v25.segment.OBX;
+import ca.uhn.hl7v2.model.v25.segment.ORC;
 import ca.uhn.hl7v2.model.v25.segment.PID;
+import ca.uhn.hl7v2.model.v25.segment.PV1;
 import ca.uhn.hl7v2.parser.Parser;
 import inveox.exportservice.infrastructure.inbound.dlo.DLOExtensionService;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.ContainerDto;
 import inveox.exportservice.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
 import inveox.exportservice.infrastructure.inbound.patient.PatientExtensionService;
 import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
@@ -73,7 +80,11 @@ public class ExportService {
 	}
 
 
-	public Message mapDLOtoORM_01(String pat_id) {
+	public Message mapDLOtoORM_01(String dlo_id) {
+
+		DigitalLabOrderDto dlo=dloMock.getDigitalLabOrderDto(dlo_id);
+
+		String pat_id=dlo.getBussinessId();
 
         PatientDto patientDto=patientMock.getPatient(pat_id);
 
@@ -115,72 +126,37 @@ public class ExportService {
 				e.printStackTrace();
 			}
 
+			PV1 segPV1=orm.getPATIENT().getPATIENT_VISIT().getPV1();
 
-			/*
-            segPID.getAlternatePatientIDPID(0).getID().setValue(""+datosOrdenVO.getPaciente().getHc());
+			segPV1.getPatientClass().setValue("I");
+
+			int i=0;
+
+			for (ContainerDto conta : dlo.getContainers()) {
 			
-			segPID.getPatientIdentifierList(0).getAssigningAuthority().getHd1_NamespaceID().setValue(datosOrdenVO.getPaciente().getId().getTipoId());
-			segPID.getDateTimeOfBirth().getTimeOfAnEvent().setValue(df.format(datosOrdenVO.getPaciente().getFechaNacimiento()));
-			
-			if (datosOrdenVO.getEmail()!=null) {
-				segPID.getPhoneNumberBusiness(0).getAnyText().setValue(datosOrdenVO.getEmail());
-			}
-
-*/
-
-/*
-			PV1 segPV1=orm.getPIDPD1NTEPV1PV2IN1IN2IN3GT1AL1().getPV1PV2().getPV1();
-			segPV1.getPatientClass().setValue(TipoAtencion.AMBULATORIO.getValor());
-			segPV1.getServicingFacility().setValue(datosOrdenVO.getCodigoUbicacion());
-
-			if (datosOrdenVO.getOrigenAdmision()!=null) {
-				segPV1.getAdmitSource().setValue(datosOrdenVO.getOrigenAdmision());
-				if (datosOrdenVO.getOrigenAdmision().compareTo("CEX")!=0) {
-					segPV1.getPatientClass().setValue(TipoAtencion.HOSPITALIZADO.getValor());					
-				}
-			}
-			
-             */
-            
-/*
-            int i=0;
-			for (SolicitudVO solicitud:datosOrdenVO.getSolicitudes()){
-				ORC segORC=orm.getORCOBRRQDRQ1ODSODTRXONTEDG1RXRRXCNTEOBXNTECTIBLG(i).getORC();
+				ORC segORC=orm.getORDER(i).getORC();
 				segORC.getOrderControl().setValue(orderControl);
-				segORC.getQuantityTiming().getStartDateTime().getTimeOfAnEvent().setValue(dfConHora.format(datosOrdenVO.getFecha()));
-				Prioridad prioridad=datosOrdenVO.getPrioridad();
-				segORC.getQuantityTiming().getPriority().setValue(prioridad.getValor());
-				segORC.getDateTimeOfTransaction().getTimeOfAnEvent().setValue(dfConHora.format(datosOrdenVO.getFecha()));
-				segORC.getEnteringOrganization().getCe1_Identifier().setValue(datosOrdenVO.getEntidadRemitente());
-				OBR segOBR=orm.getORCOBRRQDRQ1ODSODTRXONTEDG1RXRRXCNTEOBXNTECTIBLG(i).getOBRRQDRQ1ODSODTRXONTEDG1RXRRXCNTEOBXNTE().getOBR();
+				segORC.getOrc2_PlacerOrderNumber().getEntityIdentifier().setValue(dlo_id);
+	
+				OBR segOBR=orm.getORDER(i).getORDER_DETAIL().getOBR();
 				segOBR.getSetIDOBR().setValue(""+(i+1));						
+				segOBR.getUniversalServiceIdentifier().getAlternateText().setValue(conta.getMainBodyPart());
 
-				String nombreProc=solicitud.getNombreCodigoExterno();
+				OBX segOBX=orm.getORDER(i).getORDER_DETAIL().getOBSERVATION().getOBX();
 
-				if (nombreProc.length()>59){
-					nombreProc=nombreProc.substring(0,59);
-				}
 
-				segOBR.getObr4_UniversalServiceID().getCe5_AlternateText().setValue(nombreProc);
-				segOBR.getObr4_UniversalServiceID().getCe4_AlternateIdentifier().setValue(solicitud.getCodigoExterno());
-				segOBR.getObr4_UniversalServiceID().getCe6_NameOfAlternateCodingSystem().setValue(solicitud.getModalidad());
-				segOBR.getObr24_DiagnosticServSectID().setValue(solicitud.getModalidad());
-				segOBR.getRelevantClinicalInfo().setValue(datosOrdenVO.getDatosClinicos());
-				segOBR.getOrderingProvider(0).getIDNumber().setValue(datosOrdenVO.getMedico());
-				segOBR.getPlacerOrderNumber().getEntityIdentifier().setValue(datosOrdenVO.getOrdenId());
-				segOBR.getPlacerField1().setValue(datosOrdenVO.getOrdenId());
-				segOBR.getPlacerField2().setValue(datosOrdenVO.getOrdenId());
-				segOBR.getFillerField1().setValue(solicitud.getCodigoExterno());				
-				segOBR.getQuantityTiming(0).getStartDateTime().getTimeOfAnEvent().setValue(dfConHora.format(datosOrdenVO.getFecha()));
-				segOBR.getQuantityTiming(0).getPriority().setValue(datosOrdenVO.getPrioridad().toString());
+				segOBX.getObx1_SetIDOBX().setValue(""+1);
+				segOBX.getObx3_ObservationIdentifier().getCe1_Identifier().setValue("PROBENANZAHL");
+				NM samples= new NM(orm);
+				samples.setValue(""+conta.getSamples());
+				segOBX.getObx2_ValueType().setValue("NM");
+				Varies value = segOBX.getObservationValue(0);
+				value.setData(samples);
+
 				i++;
 			}
-			orm.addNonstandardSegment("ZDS");		
-			Segment segZDS=(Segment)orm.get("ZDS");
-			datosOrdenVO.setStudyUID("1.3.6.1.4.1.23650.4."+dfConHora.format(datosOrdenVO.getFecha())+"."+datosOrdenVO.getOrdenId().replace("_", "."));
-			segZDS.parse("ZDS|"+datosOrdenVO.getStudyUID());
 
-             */
+
 
             Parser p = ctx.getGenericParser();
             Message hapiMsg = p.parse(orm.toString());
