@@ -48,7 +48,7 @@ public class TestSQL_Lite {
         return "We have " + result.size() + " dlo stored";
     }
 
-    @Path("/contanier/all")
+    @Path("/container/all")
     @GET
     public List<Container> getAllContainers() {
 

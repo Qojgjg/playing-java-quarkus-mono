@@ -1,8 +1,6 @@
 package inveox.srm.domain.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,10 +19,8 @@ import lombok.ToString;
 public class Container { 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     private String containerId;
+
     private String mainBodyPart;
     private Integer num_samples;
     private ContainerStatus status;

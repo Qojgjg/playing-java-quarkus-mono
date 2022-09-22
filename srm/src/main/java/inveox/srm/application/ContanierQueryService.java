@@ -1,61 +1,53 @@
 package inveox.srm.application;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import inveox.srm.application.dto.ContainerDataDto;
 import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
+import inveox.srm.repository.DigitalLabOrderRepository;
 
 @ApplicationScoped
 @Transactional
 public class ContanierQueryService {
 
-    @Inject
-    EntityManager em;
+    private final DigitalLabOrderRepository dloRepo;
 
-    public ArrayList<ContainerDataDto> fingContainerId(String containerId) {
+    public ContanierQueryService(DigitalLabOrderRepository dloRepo) {
+        this.dloRepo = dloRepo;
+    }
 
-        TypedQuery<DigitalLabOrder> query = em
-                .createQuery(
-                        "select dlo FROM DigitalLabOrder dlo  join dlo.contaniers conts WHERE conts.containerId = :p1 ",
-                        DigitalLabOrder.class)
-                .setParameter("p1", containerId);
-        List<DigitalLabOrder> result = query.getResultList();
+    public ContainerDataDto findContainerId(String containerId) {
 
-        ArrayList<ContainerDataDto> containersData = new ArrayList<>();
+        DigitalLabOrder dlo = dloRepo.findByContainersContainerId(containerId);
 
-        for (DigitalLabOrder dlo : result) {
-            for (Container conta : dlo.getContaniers()) {
-                if (conta.getContainerId() != null) {
-                    if (conta.getContainerId().equals(containerId)) {
-                        ContainerDataDto contDto = new ContainerDataDto();
-                        if (dlo.getBusinessId()!=null){
-                            contDto.setBussinessId(dlo.getBusinessId());
-                        }
-                        if (conta.getContainerId()!=null){
-                            contDto.setContainerId(conta.getContainerId());
-                        }
-                        if (dlo.getUuid()!=null){
-                            contDto.setDloId(dlo.getUuid());
-                        }
-                        if (conta.getMainBodyPart()!=null){
-                            contDto.setMainBodyPart(conta.getMainBodyPart());
-                        }
-                        contDto.setSamples(conta.getNum_samples());
-                        contDto.setStatus(conta.getStatus());
-                        containersData.add(contDto);
-                    }
+        ContainerDataDto contDto = new ContainerDataDto();
+
+        Container conta = dlo.getThisContainer(containerId);
+
+        if (conta != null) {
+            if (conta.getContainerId().equals(containerId)) {
+
+                if (dlo.getBusinessId() != null) {
+                    contDto.setBussinessId(dlo.getBusinessId());
                 }
+                if (conta.getContainerId() != null) {
+                    contDto.setContainerId(conta.getContainerId());
+                }
+                if (dlo.getUuid() != null) {
+                    contDto.setDloId(dlo.getUuid());
+                }
+                if (conta.getMainBodyPart() != null) {
+                    contDto.setMainBodyPart(conta.getMainBodyPart());
+                }
+                contDto.setSamples(conta.getNum_samples());
+                contDto.setStatus(conta.getStatus());
+                contDto.setContainersInDlo(dlo.getContainers().size());
             }
+
         }
-        return containersData;
+        return contDto;
 
     }
 

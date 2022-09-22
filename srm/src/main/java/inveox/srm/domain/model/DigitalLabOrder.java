@@ -1,13 +1,11 @@
 package inveox.srm.domain.model;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,10 +26,8 @@ import lombok.ToString;
 public class DigitalLabOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
     private String uuid;
+    
     private String businessId;
     private Instant lastStatusChanged;
     private DigitalLabOrderStatus status;
@@ -39,6 +35,19 @@ public class DigitalLabOrder {
 
    // @OneToMany(mappedBy = "laborder", fetch = FetchType.LAZY, cascade =CascadeType.REMOVE)  
    @OneToMany(fetch = FetchType.LAZY, cascade =CascadeType.ALL)
-    private Set<Container> contaniers;
+    private List<Container> containers;
+
+
+public Container getThisContainer(String containerId) {
+    for (Container conta : this.getContainers()) {
+        if (conta.getContainerId() != null) {
+            if (conta.getContainerId().equals(containerId)) {
+                return conta;
+            }
+        }
+    }
+    return null;
+}
 
 }
+

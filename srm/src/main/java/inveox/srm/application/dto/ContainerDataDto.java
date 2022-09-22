@@ -24,6 +24,8 @@ public class ContainerDataDto {
  
     private Integer samples;
 
+    private Integer containersInDlo;
+
     private String bussinessId;
 
 }
