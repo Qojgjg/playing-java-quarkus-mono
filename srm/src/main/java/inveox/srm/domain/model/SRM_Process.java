@@ -3,7 +3,9 @@ package inveox.srm.domain.model;
 import java.time.Instant;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,11 +36,13 @@ public class SRM_Process {
     private Integer countingResultByUser;
     private Integer countingResultBySRM;
     private Integer countingResult;
+    private String containerId;
+
 
     //SRM or User
     private Actor countedBy;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade =CascadeType.ALL)
     List<SRM_Event> events;
 
 

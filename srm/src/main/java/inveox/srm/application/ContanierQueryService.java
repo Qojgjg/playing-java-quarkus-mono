@@ -18,9 +18,11 @@ public class ContanierQueryService {
         this.dloRepo = dloRepo;
     }
 
-    public ContainerDataDto findContainerId(String containerId) {
+    public ContainerDataDto findContainerId(String containerId) throws Exception{
 
         DigitalLabOrder dlo = dloRepo.findByContainersContainerId(containerId);
+
+        if (dlo==null) throw new Exception("Container Id not found");
 
         ContainerDataDto contDto = new ContainerDataDto();
 

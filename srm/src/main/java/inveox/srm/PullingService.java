@@ -58,14 +58,14 @@ public class PullingService{
         cont1.setContainerId("containerId"+dlo.getUuid()+".1");
         cont1.setNum_samples(3);
         cont1.setMainBodyPart("mainBodyPart");
-        cont1.setStatus(ContainerStatus.IN_PROCESS);
+        cont1.setStatus(ContainerStatus.NOT_SCANNED);
 
         Container cont2=new Container();
 
         cont2.setContainerId("containerId"+dlo.getUuid()+".2");
         cont2.setNum_samples(2);
         cont2.setMainBodyPart("mainBodyPart2");
-        cont2.setStatus(ContainerStatus.IN_PROCESS);
+        cont2.setStatus(ContainerStatus.NOT_SCANNED);
         
         List<Container> conts=new LinkedList<Container>();
 

@@ -18,9 +18,11 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
+import inveox.srm.domain.model.SRM_Process;
 import inveox.srm.infrastructure.inbound.dlo.DLOExtensionService;
 import inveox.srm.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
 import inveox.srm.infrastructure.inbound.dlo.dto.Example;
+import inveox.srm.repository.SRM_ProcessRepository;
 
 @Path("/test")
 public class TestSQL_Lite {
@@ -31,6 +33,9 @@ public class TestSQL_Lite {
     @Inject
     @RestClient
     DLOExtensionService dloService;
+
+    @Inject
+    SRM_ProcessRepository processRepo;
 
     @Path("/all")
     @GET
@@ -87,5 +92,25 @@ public class TestSQL_Lite {
         Set<Example> result = dloService.getAllExamples();
         return "We have " + result.size() + " examples pulled";
     }
+
+
+    @Path("/process/all")
+    @GET
+    public List<SRM_Process> getAllProcess() {
+
+        return processRepo.findAll();
+
+    }
+
+
+    @Path("/process/{containerId}")
+    @GET
+    public List<SRM_Process> getAllProcess(@PathParam("containerId") String containerId) {
+
+        return processRepo.findByContainerId(containerId);
+
+    }
+
+
 
 }
