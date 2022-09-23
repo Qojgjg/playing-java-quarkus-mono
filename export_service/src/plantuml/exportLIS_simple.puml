@@ -14,7 +14,7 @@ activate icp
 activate int
 int -> lab: getLabOrdersWithStateReady
 activate lab
-lab -> lab: get all lab orders with state <b>READY_TO_EXPORT</b>
+lab -> lab: get all lab orders with state <b>ACCEPTED</b>
 lab --> int: lab orders
 deactivate lab
 int --> icp: lab orders
@@ -42,7 +42,7 @@ icp -> int: confirmLabOrderExported
 activate int
 int -> lab: confirmLabOrderExported
 activate lab
-lab -> lab: set status <b>ACCEPTED</b>
+lab -> lab: set status <b>EXPORTED</b>
 lab --> int
 deactivate lab
 int --> icp
