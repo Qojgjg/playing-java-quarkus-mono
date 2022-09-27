@@ -1,5 +1,6 @@
 [{
     "id": "1827821",
+    "caseDescription": "case description",
     "bussinessId": "12324",
     "lasStatusChanged": "2017-08-14T12:17:47.720Z",
     "status": "IN_DELIVERY",

@@ -6,7 +6,7 @@ participant SRM_PLC
 end box
 
 loop 10 sec
-    SRM_Ubuntu->FHIR_R4_Server ++: Pull DLO Orders for all new Contaniers
+    SRM_Ubuntu->laborder_service ++: Pull DLO Orders for all new Contaniers
     return orders
     SRM_Ubuntu->SRM_Ubuntu: Store DLO Orders
     SRM_Ubuntu->SRM_Ubuntu: Link Container by number case
@@ -31,7 +31,8 @@ loop 30 sec
     SRM_Ubuntu->SRM_Ubuntu: DICOM Generated
     SRM_Ubuntu->DICOM_Server: SEND DICOM Best Shoot to Cloud (POST)
     SRM_Ubuntu->SRM_Ubuntu: Sent Image
-    SRM_Ubuntu->FHIR_R4_Server: Mark Contanier as Completed
+        SRM_Ubuntu->SRM_Ubuntu: All issues are resolved
+    SRM_Ubuntu->laborder_service: Mark DLO as Completed
 end 
 loop 60 sec
     SRM_Ubuntu->ELK: Send Metrics to Cloud

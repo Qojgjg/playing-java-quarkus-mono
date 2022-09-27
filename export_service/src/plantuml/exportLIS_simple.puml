@@ -14,8 +14,8 @@ activate icp
 activate int
 int -> lab: getLabOrdersWithStateReady
 activate lab
-lab -> lab: get all lab orders with state <b>ACCEPTED</b>
-lab --> int: lab orders
+lab -> lab: get all lab orders IDs  with state <b>ACCEPTED</b>
+lab --> int: lab orders ids
 deactivate lab
 int --> icp: lab orders
 deactivate int
@@ -38,11 +38,11 @@ int -> int: Convert DLO to HL7 ORM (patient, coverages, labOrder)
 int --> icp: HL7 ORM message
 deactivate int
 icp -> icp: store HL7 ORM \nmessage to SFTP server
-icp -> int: confirmLabOrderExported
+icp -> int: confirmLabOrderExported(id)
 activate int
-int -> lab: confirmLabOrderExported
+int -> lab: confirmLabOrderExported(id)
 activate lab
-lab -> lab: set status <b>EXPORTED</b>
+lab -> lab: MarkAs<b>EXPORTED</b>
 lab --> int
 deactivate lab
 int --> icp

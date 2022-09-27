@@ -11,49 +11,49 @@
 * Docker
 * Wiremock
 * Maven
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+1. Up mockup services
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+   docker-compose -f src/main/docker/wiremock.yml up
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+2. debug ExportService
+   ```
+    mvn quarkus:dev
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 
-Invoke a GET Request to following endpoint
+Invoke a GET Request to following endpoint for Map one laborder
 
 ```
-  http://localhost:8080/exportservice/message/laborder/1.18272
+http://localhost:8080/exportservice/message/laborder/1.18272
    ```
 
-You will have the ORM message for this mock DLO.
+   ```
+http://localhost:8080/exportservice/message/laborder/2.4068387
+   ```
 
 
 <div>    
   <img src="docs/invocation.png" a>
 </div>
+
+Invoke a GET Request to following endpoint for see mock data
+
+```
+http://localhost:8080/exportservice/laborder/mock/2.4068387
+```
+
+You will have the Data Lab data mock.
+
+```
+http://localhost:8080/exportservice/patient/mock/4068387
+```
+
+You will have the Patient data mock.
+
+

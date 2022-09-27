@@ -11,6 +11,7 @@ class DigitalLabOrderDto {
     UUID id
 	businessId	
 	Instant lastStatusChanged
+    caseDescription
 }
 
 DigitalLabOrderDto *-- "1" DigitalLabOrderStatus
@@ -31,10 +32,12 @@ package com.inveox.laborder.domain.model {
 
 
  enum ContainerStatus {
-    NOT_SCANNED
+  NOT_SCANNED
     SCANNED_NO_ISSUES
     SCANNED_BROKEN
     SCANNED_EMPTY
+        IN_PROCESS
+    SCANNED_COUNT_DIFF
  }
 
 entity DigitalLabOrder {
@@ -72,6 +75,7 @@ enum DigitalLabOrderStatus {
  IN_DELIVERY
  REJECTED
  ACCEPTED
+  IN_SRM_PROCESS
 }
 
 }
