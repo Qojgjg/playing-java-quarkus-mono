@@ -1,11 +1,11 @@
-package inveox.exportservice.infrastructure.inbound.patient.dto;
+package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
 import java.time.LocalDate;
 
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.DmpMarking;
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.InsuranceType;
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.SpecialGroupsOfPeople;
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.TypeOfInsured;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.DmpMarking;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.InsuranceType;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.SpecialGroupsOfPeople;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.TypeOfInsured;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

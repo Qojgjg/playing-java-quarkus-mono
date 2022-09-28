@@ -6,7 +6,7 @@ import javax.ws.rs.PathParam;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.PatientDto;
 
 @Path("/patient")
 @RegisterRestClient

@@ -5,7 +5,6 @@ node SRM_Ubuntu{
       [TwinCat]
       [ImageProcessing]
        [Controller]
-     [DICOMClient]
     database SQLite    
 }
 
@@ -20,7 +19,8 @@ note right of Controller : Pull DLO data and Send events when is online
 note right of ImageProcessing : Python code
 
 cloud {
-    [FHIR_Server]
+     [API_Gateway]
+    [laborder_service]
     [DICOM_Server]
     [ELK]
 }
@@ -34,8 +34,8 @@ cloud {
 [ImageProcessing] -- [Controller]
 [ImageProcessing] -- [camera]
 [Controller]--[SQLite]
-[Controller]--[DICOMClient]
-[Controller]--[FHIR_Server]
-[Controller]--[DICOM_Server]
-[Controller]--[ELK]
+[Controller]--[API_Gateway]
+[API_Gateway]--[DICOM_Server]
+[API_Gateway]--[laborder_service]
+[API_Gateway]--[ELK]
 @enduml

@@ -1,8 +1,8 @@
-package inveox.exportservice.infrastructure.inbound.patient.dto;
+package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
 import java.util.List;
 
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.GenderType;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.GenderType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,9 +30,7 @@ public class PatientDto {
 
     private  GenderType gender;
 
-    private  String address;
-
-    private  List<InsuranceDto> insurances;
+    private  AddressDto address;
 
     
 }

@@ -27,12 +27,13 @@ import ca.uhn.hl7v2.model.v25.segment.ORC;
 import ca.uhn.hl7v2.model.v25.segment.PID;
 import ca.uhn.hl7v2.model.v25.segment.PV1;
 import ca.uhn.hl7v2.parser.Parser;
+import inveox.exportservice.domain.model.enums.PatientAdmissionStatus;
 import inveox.exportservice.infrastructure.inbound.dlo.DLOExtensionService;
 import inveox.exportservice.infrastructure.inbound.dlo.dto.ContainerDto;
 import inveox.exportservice.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.PatientDto;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.GenderType;
 import inveox.exportservice.infrastructure.inbound.patient.PatientExtensionService;
-import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
-import inveox.exportservice.infrastructure.inbound.patient.dto.enums.GenderType;
 
 @ApplicationScoped
 public class ExportService {
@@ -84,9 +85,7 @@ public class ExportService {
 
 		DigitalLabOrderDto dlo=dloMock.getDigitalLabOrderDto(dlo_id);
 
-		String pat_id=dlo.getBussinessId();
-
-        PatientDto patientDto=patientMock.getPatient(pat_id);
+        PatientDto patientDto=dlo.getPatient();
 
 		ORM_O01 orm=new ORM_O01();
 		String orderControl="NW";
@@ -128,8 +127,12 @@ public class ExportService {
 
 			PV1 segPV1=orm.getPATIENT().getPATIENT_VISIT().getPV1();
 
-			segPV1.getPatientClass().setValue("I");
-
+			if (dlo.getPatientAdmissionStatus().equals(PatientAdmissionStatus.OUTPATIENT)){
+				segPV1.getPatientClass().setValue("O");
+			}else{
+				segPV1.getPatientClass().setValue("I");
+			}
+			
 			int i=0;
 
 			for (ContainerDto conta : dlo.getContainers()) {
@@ -140,7 +143,7 @@ public class ExportService {
 	
 				OBR segOBR=orm.getORDER(i).getORDER_DETAIL().getOBR();
 				segOBR.getSetIDOBR().setValue(""+(i+1));						
-				segOBR.getUniversalServiceIdentifier().getAlternateText().setValue(conta.getMainBodyPart());
+//				segOBR.getUniversalServiceIdentifier().getAlternateText().setValue(conta.getContainersItems().get(i));
 
 				OBX segOBX=orm.getORDER(i).getORDER_DETAIL().getOBSERVATION().getOBX();
 
@@ -148,7 +151,7 @@ public class ExportService {
 				segOBX.getObx1_SetIDOBX().setValue(""+1);
 				segOBX.getObx3_ObservationIdentifier().getCe1_Identifier().setValue("PROBENANZAHL");
 				NM samples= new NM(orm);
-				samples.setValue(""+conta.getSamples());
+//				samples.setValue(""+conta.getContainersItems().size());
 				segOBX.getObx2_ValueType().setValue("NM");
 				Varies value = segOBX.getObservationValue(0);
 				value.setData(samples);

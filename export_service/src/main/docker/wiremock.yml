@@ -2,14 +2,14 @@ version: "3.9"
 
 services:
 
-  patient-service:
-    image: wiremock/wiremock:2.32.0
-    ports:
-      - "9000:8080"
-    command:
-      - "--global-response-templating"
-    volumes:
-      - ./wiremock/patient:/home/wiremock
+#  patient-service:
+#    image: wiremock/wiremock:2.32.0
+#    ports:
+#      - "9000:8080"
+#    command:
+#      - "--global-response-templating"
+#    volumes:
+#      - ./wiremock/patient:/home/wiremock
 
   dlo-service:
     image: wiremock/wiremock:2.32.0

@@ -1,19 +1,360 @@
 {
-    "id": "1.18272",
-    "bussinessId": "18272",
-    "lasStatusChanged": "2022-08-14T12:17:47.720Z",
-    "status": "IN_DELIVERY",
-    "containers": [{
-            "containerId": "cont4",
-            "status": "NOT_SCANNED",
-            "mainBodyPart": "Leg",
-            "samples": 2
+    "businessId": "0A90221A",
+    "laboratoryInformationSystemId": null,
+    "insurance": {
+        "associationToInsurance": null,
+        "specialGroupsOfPeople": null,
+        "dmpMarking": null,
+        "id": "0a9023a1-7b58-1d6e-817b-583b27380105",
+        "type": "PUBLIC",
+        "default": true,
+        "providerName": "AOK Bayern",
+        "providerNumber": "321564545",
+        "expiryDate": "2023-12-31",
+        "personalInsuranceNumber": "GO23564"
+    },
+    "examinationDate": "2021-10-29",
+    "examinationSpecialist": {
+        "givenNames": "David",
+        "familyName": "Schirmer",
+        "status": "DELETED",
+        "id": "0a9028c9-7a14-12f3-817a-1534f25503aa",
+        "roles": [{
+            "name": "Administrator"
+        }],
+        "jobTitle": "Doktor",
+        "termsApproved": true,
+        "title": "Dr",
+        "organizations": [{
+            "businessNumber": "412-963-592",
+            "language": "de",
+            "identifier": "pathology-412963592a",
+            "products": [{
+                "name": "dlo"
+            }],
+            "bodyParts": [{
+                    "name": "anogenital_area"
+                },
+                {
+                    "name": "arm"
+                },
+                {
+                    "name": "bowel"
+                },
+                {
+                    "name": "esophagus"
+                },
+                {
+                    "name": "finger"
+                },
+                {
+                    "name": "foot"
+                },
+                {
+                    "name": "hand"
+                },
+                {
+                    "name": "head"
+                },
+                {
+                    "name": "leg"
+                },
+                {
+                    "name": "liver"
+                },
+                {
+                    "name": "neck"
+                },
+                {
+                    "name": "stomach"
+                },
+                {
+                    "name": "toe"
+                },
+                {
+                    "name": "torso"
+                }
+            ],
+            "businessName": "Inveox Demo Practice",
+            "addresses": [{
+                "type": "BOTH",
+                "street": "Lichtenbergstraße",
+                "postalCode": "85748",
+                "houseNumber": "1",
+                "flatNumber": "8",
+                "country": "DEU",
+                "city": "Garching",
+                "administrativeRegion": "Bayern"
+            }],
+            "country": "DEU",
+            "type": "PRACTICE",
+            "inUse": true,
+            "status": "BLOCKED",
+            "contactDetails": {
+                "faxNumber": "+48999888777",
+                "email": "michal.musiol@inveox.com",
+                "phoneNumber": "+48999888777",
+                "contactPerson": "Dr. Michal Musiol"
+            }
+        }],
+        "email": "david.schirmer@inveox.com",
+        "statusDetails": null,
+        "doctorNumber": "673424"
+    },
+    "patient": {
+        "businessId": 32,
+        "address": {
+            "line2": "",
+            "postalCode": "85435",
+            "line": "Hauptstraße 25",
+            "city": "Erding",
+            "country": "DEU"
+        },
+        "givenNames": "Gerlinde",
+        "familyName": "Obermaier",
+        "id": "0a9023a1-7b58-1d6e-817b-583b27240104",
+        "externalBusinessId": null,
+        "externalId": null,
+        "insurances": [{
+            "associationToInsurance": null,
+            "specialGroupsOfPeople": null,
+            "dmpMarking": null,
+            "id": "0a9023a1-7b58-1d6e-817b-583b27380105",
+            "type": "PUBLIC",
+            "default": true,
+            "providerName": "AOK Bayern",
+            "providerNumber": "321564545",
+            "expiryDate": "2023-12-31",
+            "personalInsuranceNumber": "GO23564"
+        }],
+        "dateOfBirth": "1956-06-24",
+        "contactDetails": null,
+        "gender": "OTHER",
+        "managingOrganization": {
+            "identifier": "pathology-412963592a"
+        },
+        "version": 1
+    },
+    "sendingPractice": {
+        "businessNumber": "412-963-592",
+        "language": "de",
+        "identifier": "pathology-412963592a",
+        "products": [{
+            "name": "dlo"
+        }],
+        "bodyParts": [{
+                "name": "anogenital_area"
+            },
+            {
+                "name": "arm"
+            },
+            {
+                "name": "bowel"
+            },
+            {
+                "name": "esophagus"
+            },
+            {
+                "name": "finger"
+            },
+            {
+                "name": "foot"
+            },
+            {
+                "name": "hand"
+            },
+            {
+                "name": "head"
+            },
+            {
+                "name": "leg"
+            },
+            {
+                "name": "liver"
+            },
+            {
+                "name": "neck"
+            },
+            {
+                "name": "stomach"
+            },
+            {
+                "name": "toe"
+            },
+            {
+                "name": "torso"
+            }
+        ],
+        "businessName": "Inveox Demo Practice",
+        "addresses": [{
+            "type": "BOTH",
+            "street": "Lichtenbergstraße",
+            "postalCode": "85748",
+            "houseNumber": "1",
+            "flatNumber": "8",
+            "country": "DEU",
+            "city": "Garching",
+            "administrativeRegion": "Bayern"
+        }],
+        "country": "DEU",
+        "type": "PRACTICE",
+        "inUse": true,
+        "status": "BLOCKED",
+        "contactDetails": {
+            "faxNumber": "+48999888777",
+            "email": "michal.musiol@inveox.com",
+            "phoneNumber": "+48999888777",
+            "contactPerson": "Dr. Michal Musiol"
+        }
+    },
+    "receivingLab": {
+        "businessNumber": "412962592",
+        "language": "de",
+        "identifier": "laboratory-412963592a",
+        "products": [{
+            "name": "dlo"
+        }],
+        "bodyParts": [{
+                "name": "anogenital_area"
+            },
+            {
+                "name": "arm"
+            },
+            {
+                "name": "bowel"
+            },
+            {
+                "name": "endocrine_glands"
+            },
+            {
+                "name": "esophagus"
+            },
+            {
+                "name": "female_internal_gential_organs"
+            },
+            {
+                "name": "finger"
+            },
+            {
+                "name": "foot"
+            },
+            {
+                "name": "hand"
+            },
+            {
+                "name": "head"
+            },
+            {
+                "name": "leg"
+            },
+            {
+                "name": "liver"
+            },
+            {
+                "name": "lymphatic_system_inguinal_region"
+            },
+            {
+                "name": "male_genital_organs"
+            },
+            {
+                "name": "neck"
+            },
+            {
+                "name": "stomach"
+            },
+            {
+                "name": "toe"
+            },
+            {
+                "name": "torso"
+            },
+            {
+                "name": "urinary_system"
+            },
+            {
+                "name": "vulva"
+            }
+        ],
+        "businessName": "Inveox Demo Laboratory",
+        "addresses": [{
+            "type": "BOTH",
+            "street": "Lichtenbergstraße",
+            "postalCode": "85748",
+            "houseNumber": "18765",
+            "flatNumber": "8",
+            "country": "DEU",
+            "city": "Garching",
+            "administrativeRegion": "Bayern"
+        }],
+        "country": "DEU",
+        "type": "LAB",
+        "inUse": true,
+        "status": "BLOCKED",
+        "contactDetails": {
+            "faxNumber": null,
+            "email": "michal.musiol@inveox.com",
+            "phoneNumber": "+49564565678",
+            "contactPerson": "dr Michal Musiol"
+        }
+    },
+    "scanningNote": null,
+    "statusChanges": [{
+            "modifiedBy": {
+                "jobTitle": "Doktor",
+                "givenNames": "Anja",
+                "familyName": "Gross",
+                "id": "0a9028c9-7a14-12f3-817a-1535abbc03ac",
+                "termsApproved": true
+            },
+            "target": "DRAFT",
+            "modifiedAt": "2021-10-29T09:46:00.986468866Z"
         },
         {
-            "containerId": "cont3",
-            "status": "NOT_SCANNED",
-            "mainBodyPart": "Liver",
-            "samples": 2
+            "modifiedBy": {
+                "jobTitle": "Doktor",
+                "givenNames": "Anja",
+                "familyName": "Gross",
+                "id": "0a9028c9-7a14-12f3-817a-1535abbc03ac",
+                "termsApproved": true
+            },
+            "target": "IN_DELIVERY",
+            "modifiedAt": "2021-10-29T09:47:22.143402955Z"
         }
-    ]
+    ],
+    "lastStatusChanged": "2021-10-29T09:47:22.143403Z",
+    "caseDescription": null,
+    "labNotes": [],
+    "patientAdmissionStatus": "OUTPATIENT",
+    "containers": [{
+        "status": "NOT_SCANNED",
+        "containerId": "ABC5236547",
+        "containerItems": [{
+            "clinicalFindingsFormData": {
+                "postGastricSurgery": false,
+                "acetylsalicylicAcid": false,
+                "protonPumpInhibitorTherapy": false,
+                "nonsteroidalAntiInflammatoryDrugs": false,
+                "clinicalDiagnosis": "z.A. HP Gastritis",
+                "postHelicobacterEradication": false
+            },
+            "mainBodyPart": {
+                "name": "stomach"
+            },
+            "samples": [{
+                    "bodyPart": {
+                        "name": "pyloric_antrum"
+                    },
+                    "count": 1
+                },
+                {
+                    "bodyPart": {
+                        "name": "gastric_corpus"
+                    },
+                    "count": 1
+                }
+            ]
+        }]
+    }],
+    "id": "0a90221a-7cca-107e-817c-cb711f93029d",
+    "status": "IN_DELIVERY"
 }

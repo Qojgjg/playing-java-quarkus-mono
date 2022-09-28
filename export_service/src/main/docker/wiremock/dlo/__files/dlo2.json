@@ -1,19 +1,348 @@
 {
-    "id": "2.4068387",
-    "bussinessId": "4068387",
-    "lasStatusChanged": "2022-08-14T12:17:47.720Z",
-    "status": "IN_DELIVERY",
-    "containers": [{
-            "containerId": "cont1",
-            "status": "NOT_SCANNED",
-            "mainBodyPart": "Brain",
-            "samples": 4
+    "businessId": "JH6U0000121",
+    "statusChanges": [{
+            "target": "DRAFT",
+            "modifiedAt": "2022-09-22T08:12:26.899681850Z",
+            "modifiedBy": {
+                "jobTitle": "Dr",
+                "termsApproved": true,
+                "givenNames": "Michal",
+                "familyName": "Musiol",
+                "id": "0a9024e0-7a0e-1c25-817a-100323530922"
+            }
         },
         {
-            "containerId": "cont2",
-            "status": "NOT_SCANNED",
-            "mainBodyPart": "Lunge",
-            "samples": 5
+            "target": "READY_TO_SEND",
+            "modifiedAt": "2022-09-22T08:22:49.986862434Z",
+            "modifiedBy": {
+                "jobTitle": "Dr",
+                "termsApproved": true,
+                "givenNames": "Michal",
+                "familyName": "Musiol",
+                "id": "0a9024e0-7a0e-1c25-817a-100323530922"
+            }
+        },
+        {
+            "target": "IN_DELIVERY",
+            "modifiedAt": "2022-09-22T08:23:44.935476333Z",
+            "modifiedBy": {
+                "jobTitle": "Dr",
+                "termsApproved": true,
+                "givenNames": "Michal",
+                "familyName": "Musiol",
+                "id": "0a9024e0-7a0e-1c25-817a-100323530922"
+            }
+        },
+        {
+            "target": "ACCEPTED",
+            "modifiedAt": "2022-09-22T08:30:17.920708789Z",
+            "modifiedBy": null
         }
-    ]
+    ],
+    "laboratoryInformationSystemId": null,
+    "patient": {
+        "businessId": 59,
+        "externalBusinessId": null,
+        "externalId": null,
+        "givenNames": "Frank",
+        "dateOfBirth": "1965-12-20",
+        "version": 1,
+        "gender": "MALE",
+        "address": {
+            "line": "Chüngstbüel 1",
+            "line2": "",
+            "postalCode": "6417",
+            "country": "CHE",
+            "city": "Sattel"
+        },
+        "managingOrganization": {
+            "identifier": "pathology-412963592a"
+        },
+        "insurances": [{
+            "associationToInsurance": null,
+            "specialGroupsOfPeople": null,
+            "dmpMarking": null,
+            "default": true,
+            "personalInsuranceNumber": null,
+            "providerName": null,
+            "id": "0a904856-8345-1ee8-8183-643fc2fc00e4",
+            "providerNumber": null,
+            "type": "PAID_BY_PATIENT",
+            "expiryDate": null
+        }],
+        "contactDetails": {
+            "emailAddress": "frank.gulitz@gmail.com",
+            "phoneNumber": "+41799482848"
+        },
+        "id": "0a904856-8345-1ee8-8183-643fc2f600e3",
+        "familyName": "Gulitz"
+    },
+    "insurance": {
+        "associationToInsurance": null,
+        "specialGroupsOfPeople": null,
+        "dmpMarking": null,
+        "default": true,
+        "personalInsuranceNumber": null,
+        "providerName": null,
+        "id": "0a904856-8345-1ee8-8183-643fc2fc00e4",
+        "providerNumber": null,
+        "type": "PAID_BY_PATIENT",
+        "expiryDate": null
+    },
+    "patientAdmissionStatus": "OUTPATIENT",
+    "status": "ACCEPTED",
+    "examinationDate": "2022-09-23",
+    "examinationSpecialist": {
+        "statusDetails": null,
+        "organizations": [{
+            "contactDetails": {
+                "contactPerson": "Dr. Michal Musiol",
+                "phoneNumber": "+48999888777",
+                "email": "michal.musiol@inveox.com",
+                "faxNumber": "+48999888777"
+            },
+            "identifier": "pathology-412963592a",
+            "businessName": "Inveox Demo Practice",
+            "country": "DEU",
+            "businessNumber": "412-963-592",
+            "addresses": [{
+                "street": "Lichtenbergstraße",
+                "administrativeRegion": "Bayern",
+                "houseNumber": "1",
+                "flatNumber": "8",
+                "postalCode": "85748",
+                "country": "DEU",
+                "type": "BOTH",
+                "city": "Garching"
+            }],
+            "inUse": true,
+            "status": "BLOCKED",
+            "bodyParts": [{
+                    "name": "anogenital_area"
+                },
+                {
+                    "name": "arm"
+                },
+                {
+                    "name": "bowel"
+                },
+                {
+                    "name": "esophagus"
+                },
+                {
+                    "name": "finger"
+                },
+                {
+                    "name": "foot"
+                },
+                {
+                    "name": "hand"
+                },
+                {
+                    "name": "head"
+                },
+                {
+                    "name": "leg"
+                },
+                {
+                    "name": "liver"
+                },
+                {
+                    "name": "neck"
+                },
+                {
+                    "name": "stomach"
+                },
+                {
+                    "name": "toe"
+                },
+                {
+                    "name": "torso"
+                }
+            ],
+            "products": [{
+                "name": "dlo"
+            }],
+            "type": "PRACTICE",
+            "language": "de"
+        }],
+        "title": "",
+        "givenNames": "Christopher",
+        "familyName": "Grimm",
+        "doctorNumber": "2342342",
+        "jobTitle": "Doktor",
+        "status": "ACTIVE",
+        "email": "christopher.grimm@inveox.com",
+        "roles": [{
+            "name": "Administrator"
+        }],
+        "id": "0a90419e-7f21-109e-817f-44fbb5ee12a3",
+        "termsApproved": true
+    },
+    "sendingPractice": null,
+    "receivingLab": {
+        "contactDetails": {
+            "contactPerson": "dr Michal Musiol",
+            "phoneNumber": "+49564565678",
+            "email": "michal.musiol@inveox.com",
+            "faxNumber": null
+        },
+        "identifier": "laboratory-412963592a",
+        "businessName": "Inveox Demo Laboratory",
+        "country": "DEU",
+        "businessNumber": "412962592",
+        "addresses": [{
+            "street": "Lichtenbergstraße",
+            "administrativeRegion": "Bayern",
+            "houseNumber": "18765",
+            "flatNumber": "8",
+            "postalCode": "85748",
+            "country": "DEU",
+            "type": "BOTH",
+            "city": "Garching"
+        }],
+        "inUse": true,
+        "status": "BLOCKED",
+        "bodyParts": [{
+                "name": "anogenital_area"
+            },
+            {
+                "name": "arm"
+            },
+            {
+                "name": "bowel"
+            },
+            {
+                "name": "endocrine_glands"
+            },
+            {
+                "name": "esophagus"
+            },
+            {
+                "name": "female_internal_gential_organs"
+            },
+            {
+                "name": "finger"
+            },
+            {
+                "name": "foot"
+            },
+            {
+                "name": "hand"
+            },
+            {
+                "name": "head"
+            },
+            {
+                "name": "leg"
+            },
+            {
+                "name": "liver"
+            },
+            {
+                "name": "lymphatic_system_inguinal_region"
+            },
+            {
+                "name": "male_genital_organs"
+            },
+            {
+                "name": "neck"
+            },
+            {
+                "name": "stomach"
+            },
+            {
+                "name": "toe"
+            },
+            {
+                "name": "torso"
+            },
+            {
+                "name": "urinary_system"
+            },
+            {
+                "name": "vulva"
+            }
+        ],
+        "products": [{
+            "name": "dlo"
+        }],
+        "type": "LAB",
+        "language": "de"
+    },
+    "labNotes": [],
+    "id": "0a9047b6-8291-10fb-8183-6441556c1b36",
+    "lastStatusChanged": "2022-09-22T08:30:17.920709Z",
+    "containers": [{
+            "containerItems": [{
+                "clinicalFindingsFormData": {
+                    "postGastricSurgery": true,
+                    "acetylsalicylicAcid": false,
+                    "protonPumpInhibitorTherapy": false,
+                    "nonsteroidalAntiInflammatoryDrugs": false,
+                    "clinicalDiagnosis": "looked very healthy",
+                    "postHelicobacterEradication": false,
+                    "clinicalFindings": "no finding during biopsy"
+                },
+                "mainBodyPart": {
+                    "name": "stomach"
+                },
+                "samples": [{
+                        "bodyPart": {
+                            "name": "gastric_corpus"
+                        },
+                        "pinCoordinates": {
+                            "y": 0.18898018,
+                            "x": 0.53631425
+                        },
+                        "count": 2
+                    },
+                    {
+                        "bodyPart": {
+                            "name": "pylorus"
+                        },
+                        "pinCoordinates": {
+                            "y": 0.601748,
+                            "x": 0.38945463
+                        },
+                        "count": 1
+                    }
+                ]
+            }],
+            "containerId": "AAA0010011",
+            "status": "SCANNED_NO_ISSUES"
+        },
+        {
+            "containerItems": [{
+                "mainBodyPart": {
+                    "name": "esophagus"
+                },
+                "samples": [{
+                    "bodyPart": {
+                        "name": "lower_third_of_esophagus"
+                    },
+                    "pinCoordinates": {
+                        "y": 0.5139251,
+                        "x": 0.46288446
+                    },
+                    "count": 1
+                }]
+            }],
+            "containerId": "BBB0010011",
+            "status": "SCANNED_NO_ISSUES"
+        }
+    ],
+    "caseDescription": {
+        "modifiedBy": {
+            "jobTitle": "Dr",
+            "termsApproved": true,
+            "givenNames": "Michal",
+            "familyName": "Musiol",
+            "id": "0a9024e0-7a0e-1c25-817a-100323530922"
+        },
+        "modifiedAt": "2022-09-22T08:22:48.966Z",
+        "id": "0a9047b6-8291-10fb-8183-644ad3861b37",
+        "text": "Frank check for Stomage problems. Got problems since 5 year. 2 biopsy done last year, no findings"
+    },
+    "scanningNote": null
 }

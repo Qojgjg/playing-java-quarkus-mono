@@ -1,4 +1,4 @@
-package inveox.exportservice.infrastructure.inbound.patient.dto.enums;
+package inveox.exportservice.infrastructure.inbound.dlo.dto.enums;
 
 public enum InsuranceType {
     PUBLIC, PRIVATE, PAID_BY_PATIENT, OTHER

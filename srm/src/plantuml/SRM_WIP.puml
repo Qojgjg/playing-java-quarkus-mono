@@ -1,0 +1,47 @@
+@startuml
+
+box "SRM_Machine" #LightBlue
+participant SRM_Ubuntu
+participant SRM_PLC
+end box
+
+loop 10 sec
+    SRM_Ubuntu->laborder_service ++: Pull DLO Orders for all new Contaniers
+    return orders
+    SRM_Ubuntu->SRM_Ubuntu: Store DLO Orders
+    SRM_Ubuntu->SRM_Ubuntu: Link Container by number case
+end
+
+loop for each bulk container 
+SRM_PLC->SRM_Ubuntu: Pull DLO Orders for all new Contaniers
+SRM_PLC->SRM_PLC: Show data in GUI
+SRM_PLC->SRM_PLC: User select sorting cases trays and error
+end
+
+loop for each  container 
+SRM_PLC->SRM_PLC: Scan ContanierID
+SRM_PLC->SRM_Ubuntu: Start Capture (fps,mode,containerID)
+SRM_Ubuntu->SRM_Ubuntu: Counting Test Performed
+SRM_Ubuntu->SRM_Ubuntu: Counting and Size is correct
+SRM_Ubuntu->SRM_Ubuntu: Best Imaged Captured
+SRM_Ubuntu->SRM_PLC: ResultContainer(count)
+SRM_PLC->SRM_PLC: User can resolve some issue
+SRM_PLC->SRM_PLC: Move container to selected tray from the user
+SRM_PLC->SRM_PLC: Load next Contanier
+end
+
+
+
+loop 30 sec
+SRM_PLC->SRM_Ubuntu: DLO Containers were processed completely
+    SRM_Ubuntu->SRM_Ubuntu: Check pending events to upload 
+    SRM_Ubuntu->SRM_Ubuntu: DICOM Generated
+    SRM_Ubuntu->DICOM_Server: SEND DICOM Best Shoot to Cloud (POST)
+    SRM_Ubuntu->SRM_Ubuntu: Sent Image
+        SRM_Ubuntu->SRM_Ubuntu: All issues are resolved
+    SRM_Ubuntu->laborder_service: Mark DLO as Completed
+end 
+loop 60 sec
+    SRM_Ubuntu->ELK: Send Metrics to Cloud
+end 
+@enduml

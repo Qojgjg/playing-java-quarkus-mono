@@ -1,4 +1,4 @@
-package inveox.exportservice.infrastructure.inbound.patient.dto.enums;
+package inveox.exportservice.infrastructure.inbound.dlo.dto.enums;
 
 import java.util.Map;
 import java.util.function.Function;

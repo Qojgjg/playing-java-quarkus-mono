@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import inveox.exportservice.application.ExportService;
 import inveox.exportservice.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
-import inveox.exportservice.infrastructure.inbound.patient.dto.PatientDto;
+import inveox.exportservice.infrastructure.inbound.dlo.dto.PatientDto;
 
 
 @Path("/exportservice/")
