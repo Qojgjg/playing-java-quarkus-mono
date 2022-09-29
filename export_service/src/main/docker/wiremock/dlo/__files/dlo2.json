@@ -59,7 +59,7 @@
             "identifier": "pathology-412963592a"
         },
         "insurances": [{
-            "associationToInsurance": null,
+            "associationToInsurance": 1,
             "specialGroupsOfPeople": null,
             "dmpMarking": null,
             "default": true,

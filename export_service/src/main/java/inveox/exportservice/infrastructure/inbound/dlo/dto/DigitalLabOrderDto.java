@@ -1,7 +1,7 @@
 package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
 import java.time.Instant;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import inveox.exportservice.domain.model.enums.DigitalLabOrderStatus;
@@ -25,7 +25,7 @@ public class DigitalLabOrderDto {
 
     private Instant lastStatusChanged;
 
-    private LocalDate examinationDate;
+    private Date examinationDate;
 
     private DigitalLabOrderStatus status;
 

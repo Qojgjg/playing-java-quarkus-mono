@@ -48,12 +48,5 @@ Invoke a GET Request to following endpoint for see mock data
 http://localhost:8080/exportservice/laborder/mock/2.4068387
 ```
 
-You will have the Data Lab data mock.
-
-```
-http://localhost:8080/exportservice/patient/mock/4068387
-```
-
-You will have the Patient data mock.
 
 

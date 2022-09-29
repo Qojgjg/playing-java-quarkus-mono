@@ -100,10 +100,10 @@ public class ExportService {
 
 			PID segPID = orm.getPATIENT().getPID();
 			String familyName = patientDto.getFamilyName();
-			segPID.getPatientName(0).getFamilyName().getFn1_Surname().setValue(familyName);
+			segPID.getPatientName(0).getFamilyName().getSurname().setValue(familyName);
 			String givenNames = patientDto.getGivenNames();
 			segPID.getPatientName(0).getGivenName().setValue(givenNames);
-
+			
 			segPID.getPatientIdentifierList(0).getIDNumber().setValue(patientDto.getId());
 
 			if (patientDto.getGender().equals(GenderType.MALE)) {
@@ -134,47 +134,69 @@ public class ExportService {
 
 			IN1 segIN1 = orm.getPATIENT().getINSURANCE().getIN1();
 
-			segIN1.getCoverageType().setValue(dlo.getInsurance().getType().name());
+			segIN1.getNameOfInsured(0).getGivenName().setValue(givenNames);
+			segIN1.getNameOfInsured(0).getFamilyName().getSurname().setValue(familyName);
+			segIN1.getPlanType().setValue(dlo.getInsurance().getType().name());
+			segIN1.getPolicyNumber().setValue(dlo.getInsurance().getPersonalInsuranceNumber());
+			segIN1.getInsuranceCompanyID(0).getCx1_IDNumber().setValue(dlo.getInsurance().getProviderNumber());
+			segIN1.getInsuranceCompanyID(0).getAssigningAuthority().getHd2_UniversalID().setValue(dlo.getInsurance().getProviderName());
+
+			if (dlo.getInsurance().getAssociationToInsurance()!=null){
+				segIN1.getCoordOfBenPriority().setValue(dlo.getInsurance().getAssociationToInsurance().getCode());
+			}
 
 			if  (dlo.getInsurance().getExpiryDate()!=null){
 			hl7StringDT = df.format(dlo.getInsurance().getExpiryDate());
-
 				segIN1.getPlanExpirationDate().setValue(hl7StringDT);
 			}
-
-			
-
 
 			int i = 0;
 			int j = 0;
 
+			
 			for (ContainerDto conta : dlo.getContainers()) {
+
+				ORC segORC = orm.getORDER(i).getORC();
+				segORC.getOrderControl().setValue(orderControl);
+				segORC.getOrc2_PlacerOrderNumber().getEntityIdentifier().setValue(dlo.getBusinessId());
+				segORC.getOrderingProvider(0).getIDNumber().setValue(dlo.getExaminationSpecialist().getDoctorNumber());
+				segORC.getOrderingProvider(0).getFamilyName().getSurname().setValue(dlo.getExaminationSpecialist().getFamilyName());
+				segORC.getOrderingProvider(0).getGivenName().setValue(dlo.getExaminationSpecialist().getGivenNames());
+
+				segORC.getOrderingProvider(0).getPrefixEgDR().setValue(dlo.getExaminationSpecialist().getJobTitle());
 
 				for (ContainerItemDto item : conta.getContainerItems()) {
 
-					ORC segORC = orm.getORDER(i).getORC();
-					segORC.getOrderControl().setValue(orderControl);
-					segORC.getOrc2_PlacerOrderNumber().getEntityIdentifier().setValue(dlo.getBusinessId());
-
 					OBR segOBR = orm.getORDER(i).getORDER_DETAIL().getOBR();
 					segOBR.getSetIDOBR().setValue("" + (i + 1));
+					segOBR.getPlacerOrderNumber().getEntityIdentifier().setValue(conta.getContainerId());
 
 					OBX segOBX = orm.getORDER(i).getORDER_DETAIL().getOBSERVATION().getOBX();
 
 					segOBX.getObx1_SetIDOBX().setValue("" + 1);
 					segOBX.getObx3_ObservationIdentifier().getCe1_Identifier().setValue("PROBENANZAHL");
 
-					segOBR.getUniversalServiceIdentifier().getAlternateText()
-							.setValue(item.getMainBodyPart().getName());
+					segOBR.getUniversalServiceIdentifier().getText().setValue(item.getMainBodyPart().getName());
+
+
+					segOBR.getSpecimenSource().getSpecimenCollectionMethod().setValue("Biopsie");
+					segOBR.getSpecimenSource().getBodySite().getIdentifier().setValue(item.getMainBodyPart().getName());
+					String sources="";
 					for (SamplesDto sampleDto : item.getSamples()) {
+						sources+=sampleDto.getBodyPart().getName()+" ";
 						j = j + sampleDto.getCount();
 					}
+					segOBR.getSpecimenSource().getSpecimenSourceNameOrCode().getIdentifier().setValue(sources.trim());
+					
+					segOBR.getObr7_ObservationDateTime().getTs1_Time().setValue(dfwithTime.format(dlo.getExaminationDate()));
 
 					NM samples = new NM(orm);
 					samples.setValue("" + j);
 					segOBX.getObx2_ValueType().setValue("NM");
 					Varies value = segOBX.getObservationValue(0);
 					value.setData(samples);
+
+					segOBR.getNumberOfSampleContainers().setValue(samples.getValue());
 				}
 
 				j = 0;
