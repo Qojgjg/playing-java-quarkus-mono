@@ -4,50 +4,35 @@
 autonumber
 
 participant "interceptor (VM in DMZ)" as icp
-participant "integration service" as int
 participant "lab-order service" as lab
-participant "account service" as acc
-participant "patient service" as pat
 
 group cron job [every 20 seconds]
-icp -> int: getLabOrdersToExport
+icp -> lab: getLabOrdersToExport
 activate icp
-activate int
-int -> lab: getLabOrdersWithStateReady(from instant)
 activate lab
 lab -> lab: get all lab orders IDs  with state <b>ACCEPTED</b>
-lab --> int: lab orders ids
+lab --> icp: lab orders ids
 deactivate lab
-int --> icp: lab orders
-deactivate int
+
 loop for each lab order
-icp -> int: getLabOrderAsORMById
-activate int
-int -> lab: /api/v1/lab-orders/{id}
+
+icp -> lab: getLabOrderAsORMById
 activate lab
-lab --> int: DigitalLabOrderDto(InsuranceDto & ExaminationSpecialist_ID_Dto) 
+lab -> lab: DigitalLabOrderDto dloDto=getById(id)
+lab -> lab: Convert DLO to HL7 ORM (dloDto)
+
+lab --> icp: HL7 ORM message
 deactivate lab
-int --> acc: /api/v1/users/{ExaminationSpecialist_ID_Dto} 
-activate acc
-acc--> int: UserDto
-deactivate acc
-int -> pat: getPatientById
-activate pat
-pat --> int: patientWithOutCoverage (Dto)
-deactivate pat
-int -> int: Convert DLO to HL7 ORM (patient, insurance, user, labOrder)
-int --> icp: HL7 ORM message
-deactivate int
+
 icp -> icp: store HL7 ORM \nmessage to SFTP server
-icp -> int: confirmLabOrderExported(id)
-activate int
-int -> lab: confirmLabOrderExported(id)
+
+icp -> lab: confirmLabOrderExported(id)
 activate lab
-lab -> lab: MarkAs<b>EXPORTED</b>
-lab --> int
-deactivate lab
-int --> icp
-deactivate int
+
+lab -> lab: MarkAs<b>EXPORTED</b>(id)
+
+
+lab --> icp
 deactivate icp
 
 end

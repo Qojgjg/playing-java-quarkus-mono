@@ -1,6 +1,6 @@
 package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.DmpMarking;
 import inveox.exportservice.infrastructure.inbound.dlo.dto.enums.InsuranceType;
@@ -23,7 +23,7 @@ public class InsuranceDto {
 
     private String providerNumber;
 
-    private LocalDate expiryDate;
+    private Date expiryDate;
 
     private Boolean defaultFlag;
 

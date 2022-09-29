@@ -19,8 +19,9 @@ note right of Controller : Pull DLO data and Send events when is online
 note right of ImageProcessing : Python code
 
 cloud {
-     [API_Gateway]
+    [API_Gateway]
     [laborder_service]
+    [account_service]
     [DICOM_Server]
     [ELK]
 }
@@ -36,6 +37,7 @@ cloud {
 [Controller]--[SQLite]
 [Controller]--[API_Gateway]
 [API_Gateway]--[DICOM_Server]
+[API_Gateway]--[account_service]
 [API_Gateway]--[laborder_service]
 [API_Gateway]--[ELK]
 @enduml

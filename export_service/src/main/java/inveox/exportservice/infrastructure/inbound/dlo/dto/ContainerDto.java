@@ -1,6 +1,6 @@
 package inveox.exportservice.infrastructure.inbound.dlo.dto;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import inveox.exportservice.domain.model.enums.ContainerStatus;
 import lombok.AllArgsConstructor;
@@ -20,6 +20,7 @@ public class ContainerDto {
 
     private ContainerStatus status;
 
-    private List<ContainerItemDto> containerItems;
+    private ArrayList<ContainerItemDto> containerItems;
+
 
 }

@@ -21,9 +21,9 @@ public class DigitalLabOrderDto {
 
     private String id;
 
-    private String bussinessId;
+    private String businessId;
 
-    private Instant lasStatusChanged;
+    private Instant lastStatusChanged;
 
     private LocalDate examinationDate;
 
@@ -36,4 +36,6 @@ public class DigitalLabOrderDto {
     private PatientDto patient;
 
     private  InsuranceDto insurance;
+
+    private ExaminationSpecialistDto examinationSpecialist;
 }
