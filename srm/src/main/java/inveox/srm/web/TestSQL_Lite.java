@@ -1,8 +1,5 @@
 package inveox.srm.web;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Set;
 
@@ -19,12 +16,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import inveox.srm.domain.model.Container;
 import inveox.srm.domain.model.DigitalLabOrder;
 import inveox.srm.domain.model.SRM_Process;
-import inveox.srm.infrastructure.imageprocessing.dto.AnalyzerResponseDto;
 import inveox.srm.infrastructure.inbound.dlo.DLOExtensionService;
 import inveox.srm.infrastructure.inbound.dlo.dto.DigitalLabOrderDto;
 import inveox.srm.infrastructure.inbound.dlo.dto.Example;
@@ -70,6 +64,7 @@ public class TestSQL_Lite {
         return result;
     }
 
+    /*
     @Path("/startCapture")
     @GET
     public Integer startCapture() {
@@ -81,7 +76,7 @@ public class TestSQL_Lite {
 
         // processBuilder.command("python3.10", "--version");
 
-        processBuilder.command("python3.10", "/Users/sebastianscotti/python_ws/image_processing/ppal.py",
+        processBuilder.command("python3.10", "../../python_ws/image_processing/ppal.py",
                 "../../python_ws/1_container_42_dataset_0_tissue_type_5/");
 
         processBuilder.redirectErrorStream(true);
@@ -122,6 +117,9 @@ public class TestSQL_Lite {
 
     }
 
+     */
+
+     
     @Path("/contanier/{containerId}")
     @GET
     public List<Container> getInfoContainer(@PathParam("containerId") String contId) {
