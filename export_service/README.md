@@ -30,11 +30,11 @@
 Invoke a GET Request to following endpoint for Map one laborder
 
 ```
-http://localhost:8080/exportservice/message/laborder/1.18272
+http://localhost:8080/exportservice/message/laborder/0a90221a-7cca-107e-817c-cb711f93029d
    ```
 
    ```
-http://localhost:8080/exportservice/message/laborder/2.4068387
+http://localhost:8080/exportservice/message/laborder/0a9047b6-8291-10fb-8183-6441556c1b36
    ```
 
 
@@ -45,7 +45,7 @@ http://localhost:8080/exportservice/message/laborder/2.4068387
 Invoke a GET Request to following endpoint for see mock data
 
 ```
-http://localhost:8080/exportservice/laborder/mock/2.4068387
+http://localhost:8080/exportservice/laborder/mock/0a9047b6-8291-10fb-8183-6441556c1b36
 ```
 
 
